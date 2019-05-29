@@ -139,6 +139,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Buyer.cpp" />
+    <ClCompile Include="Info.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Seller.cpp" />
+    <ClCompile Include="SignUpMembership.cpp" />
+    <ClCompile Include="SignUpMembershipUI.cpp" />
+    <ClCompile Include="Ticket.cpp" />
+    <ClCompile Include="TicketCollection.cpp" />
+    <ClCompile Include="UserCollection.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Buyer.h" />
+    <ClInclude Include="Info.h" />
+    <ClInclude Include="Seller.h" />
+    <ClInclude Include="SignUpMembership.h" />
+    <ClInclude Include="SignUpMembershipUI.h" />
+    <ClInclude Include="Ticket.h" />
+    <ClInclude Include="TicketCollection.h" />
+    <ClInclude Include="UserCollection.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
