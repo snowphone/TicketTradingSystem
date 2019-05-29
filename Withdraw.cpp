@@ -21,11 +21,6 @@ void Withdraw::requestWithdraw(const Info & info) {
 		std::cout << info.getID() << std::endl;
 		UserCollection::get().erase(info);
 	}
-	else {
-#ifdef _DEBUG
-		std::cout << "ERROR" << std::endl;
-#endif
-	}
 }
 
 Withdraw::~Withdraw()

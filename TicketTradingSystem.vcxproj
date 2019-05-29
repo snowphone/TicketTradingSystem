@@ -143,6 +143,8 @@
     <ClCompile Include="Buyer.cpp" />
     <ClCompile Include="Info.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="RegisterTicketManager.cpp" />
+    <ClCompile Include="RegisterTicketUI.cpp" />
     <ClCompile Include="Seller.cpp" />
     <ClCompile Include="SignIn.cpp" />
     <ClCompile Include="SignInUI.cpp" />
@@ -159,6 +161,8 @@
   <ItemGroup>
     <ClInclude Include="Buyer.h" />
     <ClInclude Include="Info.h" />
+    <ClInclude Include="RegisterTicketManager.h" />
+    <ClInclude Include="RegisterTicketUI.h" />
     <ClInclude Include="Seller.h" />
     <ClInclude Include="SignIn.h" />
     <ClInclude Include="SignInUI.h" />

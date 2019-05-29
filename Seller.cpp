@@ -13,6 +13,11 @@ bool Seller::empty() const
 	return tickets.empty();
 }
 
+void Seller::addTicket(const Ticket ticket)
+{
+	tickets.push_back(ticket);
+}
+
 bool Seller::operator==(const Info & info) const
 {
 	return this->info == info;

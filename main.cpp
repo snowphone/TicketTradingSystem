@@ -8,6 +8,7 @@
 #include "WithdrawUI.h"
 #include "SignInUI.h"
 #include "SignOutUI.h"
+#include "RegisterTicketUI.h"
 
 using namespace std;
 
@@ -51,6 +52,11 @@ int main(int argc, char* argv[]) {
 		case 3:
 			if (second == 1) {
 				//판매 티켓 등록
+				string time, home, away, position;
+				bool lta;
+				int price;
+				in >> price >> time >> home >> away >> position >> lta;
+				RegisterTicketUI::get().createNewTicket(currentUser, price, time, home, away, position, lta);
 			}
 			else {
 				//등록 티켓 조회
