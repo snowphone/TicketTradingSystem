@@ -6,8 +6,11 @@
 class Buyer
 {
 	Info info;
-	std::vector<Ticket>& tickets;
+	TicketCollection tickets;
 public:
+	const Info& getInfo() const;
+	bool empty() const;
+	bool operator==(const Info& i) const;
 	Buyer(const Info& info);
 	~Buyer();
 };

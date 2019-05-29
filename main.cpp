@@ -5,7 +5,8 @@
 #include <fstream>
 
 #include "SignUpMembershipUI.h"
-
+#include "WithdrawUI.h"
+#include "SignInUI.h"
 
 using namespace std;
 
@@ -15,6 +16,7 @@ int main(int argc, char* argv[]) {
 #ifndef _DEBUG
 	freopen("output.txt", "w", stdout);	//cout -> output.txt·Î ¸®µð·º¼Ç
 #endif
+	const Info* currentUser = nullptr;
 	while (in) {
 		int first, second;
 		string input;
@@ -29,11 +31,15 @@ int main(int argc, char* argv[]) {
 			}
 			else {
 				//È¸¿øÅ»Åð
+				WithdrawUI::get().requestWithdraw(*currentUser);
 			}
 			break;
 		case 2:
 			if (second == 1) {
 				//·Î±×ÀÎ
+				string id, pw;
+				in >> id >> pw;
+				currentUser = SignInUI::get().requestSignIn(id, pw);
 			}
 			else {
 				//·Î±×¾Æ¿ô

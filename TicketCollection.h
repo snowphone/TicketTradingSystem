@@ -4,4 +4,5 @@
 
 #include "Ticket.h"
 
-extern std::vector<Ticket> tickets;
+using TicketCollection = std::vector<Ticket>;
+extern TicketCollection registeredTickets;

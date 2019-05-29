@@ -11,7 +11,10 @@ class Info
 		userType;
 
 public:
+	bool checkID(std::string id, std::string pw) const;
 	Info(std::string id, std::string pw, std::string name, std::string ssn, std::string userType);
+	bool operator==(const Info& i) const;
+	std::string getID() const;
 	std::string getUserType() const;
 	~Info();
 };
