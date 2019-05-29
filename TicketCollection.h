@@ -5,4 +5,3 @@
 #include "Ticket.h"
 
 using TicketCollection = std::vector<Ticket>;
-extern TicketCollection registeredTickets;

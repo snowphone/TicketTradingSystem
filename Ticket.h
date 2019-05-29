@@ -12,6 +12,8 @@ class Ticket
 	bool useLTA;
 
 public:
+	bool operator==(const Ticket t) const;
+	std::string getTime() const;
 	Ticket(int price, std::string time, std::string home, std::string away, std::string position, bool useLTA);
 	~Ticket();
 };

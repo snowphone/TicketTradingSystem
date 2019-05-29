@@ -1,7 +1,23 @@
 #include "Seller.h"
+#include <iostream>
+#include <iterator>
+#include <algorithm>
 #include <vector>
 
 
+
+void Seller::printTickets() const
+{
+	TicketCollection tmp;
+	copy(registeredTickets.begin(), registeredTickets.end(), std::back_inserter(tmp));
+	copy(soldTickets.begin(), soldTickets.end(), std::back_inserter(tmp));
+	sort(tmp.begin(), tmp.end(), [](Ticket& lhs, Ticket& rhs) { return lhs.getTime() < rhs.getTime(); });
+
+
+	for (Ticket& t : tmp) {
+		std::cout << t << " " << (bool)std::count(soldTickets.begin(), soldTickets.end(), t) << std::endl;
+	}
+}
 
 const Info & Seller::getInfo() const
 {
@@ -10,12 +26,12 @@ const Info & Seller::getInfo() const
 
 bool Seller::empty() const
 {
-	return tickets.empty();
+	return registeredTickets.empty();
 }
 
 void Seller::addTicket(const Ticket ticket)
 {
-	tickets.push_back(ticket);
+	registeredTickets.push_back(ticket);
 }
 
 bool Seller::operator==(const Info & info) const

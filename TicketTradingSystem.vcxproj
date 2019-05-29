@@ -145,6 +145,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RegisterTicketManager.cpp" />
     <ClCompile Include="RegisterTicketUI.cpp" />
+    <ClCompile Include="SearchRegisteredTicket.cpp" />
+    <ClCompile Include="SearchRegisteredTicketUI.cpp" />
     <ClCompile Include="Seller.cpp" />
     <ClCompile Include="SignIn.cpp" />
     <ClCompile Include="SignInUI.cpp" />
@@ -153,7 +155,6 @@
     <ClCompile Include="SignUpMembership.cpp" />
     <ClCompile Include="SignUpMembershipUI.cpp" />
     <ClCompile Include="Ticket.cpp" />
-    <ClCompile Include="TicketCollection.cpp" />
     <ClCompile Include="UserCollection.cpp" />
     <ClCompile Include="Withdraw.cpp" />
     <ClCompile Include="WithdrawUI.cpp" />
@@ -163,6 +164,8 @@
     <ClInclude Include="Info.h" />
     <ClInclude Include="RegisterTicketManager.h" />
     <ClInclude Include="RegisterTicketUI.h" />
+    <ClInclude Include="SearchRegisteredTicket.h" />
+    <ClInclude Include="SearchRegisteredTicketUI.h" />
     <ClInclude Include="Seller.h" />
     <ClInclude Include="SignIn.h" />
     <ClInclude Include="SignInUI.h" />

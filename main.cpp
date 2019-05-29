@@ -9,6 +9,7 @@
 #include "SignInUI.h"
 #include "SignOutUI.h"
 #include "RegisterTicketUI.h"
+#include "SearchRegisteredTicketUI.h"
 
 using namespace std;
 
@@ -60,6 +61,7 @@ int main(int argc, char* argv[]) {
 			}
 			else {
 				//등록 티켓 조회
+				SearchRegisteredTicketUI::get().search(*currentUser);
 			}
 			break;
 		case 4:

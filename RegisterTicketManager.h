@@ -5,7 +5,6 @@ class RegisterTicketManager
 	RegisterTicketManager();
 	static RegisterTicketManager* var;
 
-	const Info* currentUser = nullptr;
 public:
 	static RegisterTicketManager& get();
 	void addNewTicket(const Info * currentUser, int price,

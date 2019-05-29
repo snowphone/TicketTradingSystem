@@ -5,8 +5,11 @@
 class Seller
 {
 	Info info;
-	std::vector<Ticket> tickets;
+	TicketCollection registeredTickets;
+	TicketCollection soldTickets;
+	
 public:
+	void printTickets() const;
 	const Info& getInfo() const;
 	bool empty() const;
 	void addTicket(const Ticket ticket);
