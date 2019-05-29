@@ -146,6 +146,8 @@
     <ClCompile Include="Seller.cpp" />
     <ClCompile Include="SignIn.cpp" />
     <ClCompile Include="SignInUI.cpp" />
+    <ClCompile Include="SignOut.cpp" />
+    <ClCompile Include="SignOutUI.cpp" />
     <ClCompile Include="SignUpMembership.cpp" />
     <ClCompile Include="SignUpMembershipUI.cpp" />
     <ClCompile Include="Ticket.cpp" />
@@ -160,6 +162,8 @@
     <ClInclude Include="Seller.h" />
     <ClInclude Include="SignIn.h" />
     <ClInclude Include="SignInUI.h" />
+    <ClInclude Include="SignOut.h" />
+    <ClInclude Include="SignOutUI.h" />
     <ClInclude Include="SignUpMembership.h" />
     <ClInclude Include="SignUpMembershipUI.h" />
     <ClInclude Include="Ticket.h" />

@@ -7,6 +7,7 @@
 #include "SignUpMembershipUI.h"
 #include "WithdrawUI.h"
 #include "SignInUI.h"
+#include "SignOutUI.h"
 
 using namespace std;
 
@@ -43,6 +44,8 @@ int main(int argc, char* argv[]) {
 			}
 			else {
 				//·Î±×¾Æ¿ô
+				SignOutUI::get().requestSignOut(*currentUser);
+				currentUser = nullptr;
 			}
 			break;
 		case 3:

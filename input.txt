@@ -1,4 +1,6 @@
 1 1 ytn testpwd yoo 112233 seller
 2 1 ytn testpwd
+2 2
+2 1 ytn testpwd
 1 2
 2 1 hi hi
