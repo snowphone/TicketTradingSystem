@@ -55,15 +55,11 @@ std::vector<Ticket*> UserCollection::getReservableTickets(const std::string& hom
 	for (Seller& seller : sellers) {
 		//판매중인 티켓 선택
 		std::vector<std::shared_ptr<Ticket>>& tickets = seller.getRegisteredTickets();
-#if 0
-		std::for_each(tickets.begin(), tickets.end(), 
-			[&](const std::shared_ptr<Ticket>& i) { reservableTickets.push_back(i.get()); });
-#else
+
 		for (auto it = tickets.begin(); it != tickets.end(); ++it)
 		{
 			reservableTickets.push_back(it->get());
 		}
-#endif
 	}
 	//시간순 정렬
 	sort(reservableTickets.begin(), reservableTickets.end(), [](Ticket* lhs, Ticket* rhs) { return lhs->getTime() < rhs->getTime(); });

@@ -1,5 +1,6 @@
 #include "SearchReservableTicketManager.h"
 #include "UserCollection.h"
+#include <algorithm>
 
 
 
@@ -18,11 +19,13 @@ SearchReservableTicketManager & SearchReservableTicketManager::get()
 
 void SearchReservableTicketManager::show(std::string home)
 {
-	std::cout << "4.1. 티켓 검색" << std::endl
-		<< "> ";
+	std::cout << "4.1. 티켓 검색" << std::endl;
 	this->watchingTickets = UserCollection::get().getReservableTickets(home);
+	auto it = std::remove_if(watchingTickets.begin(), watchingTickets.end(), [](Ticket* i) {return i->isUnderAuction(); });
+	watchingTickets.erase(it, watchingTickets.end());
+
 	for (auto& ticketPtr : watchingTickets) {
-		std::cout << *ticketPtr << std::endl;
+		std::cout << "> " << *ticketPtr << std::endl;
 	}
 }
 

@@ -25,7 +25,7 @@ void RegisterTicketManager::addNewTicket(const Info * currentUser, int price, st
 	std::shared_ptr<Ticket> ticket = std::make_shared<Ticket>(price, time, home, away, position, useLTA);
 
 	std::cout << "3.1. 판매티켓 등록" << std::endl
-		<< "> " << ticket << " " << ticket->isLTA() << std::endl;
+		<< "> " << ticket->getPrice() << " " << ticket << " " << ticket->isLTA() << std::endl;
 
 	//판매자 찾기
 	auto user = UserCollection::get()[*currentUser];

@@ -12,6 +12,7 @@
 #include "SearchRegisteredTicketUI.h"
 #include "SearchReservableTicketUI.h"
 #include "SearchTicketsInAuctionUI.h"
+#include "BookedTicketManagerUI.h"
 
 #include "Timer.h"
 #include "UserCollection.h"
@@ -101,6 +102,7 @@ int main(int argc, char* argv[]) {
 			}
 			else {
 				//예약 정보 조회
+				BookedTicketManagerUI::get().search(*currentUser);
 			}
 			break;
 		case 5:
@@ -108,6 +110,7 @@ int main(int argc, char* argv[]) {
 			cout << "5.1. 현재시간 설정" << endl;
 			string time;
 			in >> time;
+			cout << "> " << time << std::endl;
 			Timer::setCurrentTime(time);
 			break;
 		}
@@ -129,5 +132,6 @@ int main(int argc, char* argv[]) {
 		default:
 			break;
 		}
+		std::cout << std::endl;
 	}
 }

@@ -142,6 +142,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BookedTicketManager.cpp" />
+    <ClCompile Include="BookedTicketManagerUI.cpp" />
     <ClCompile Include="Buyer.cpp" />
     <ClCompile Include="Info.cpp" />
     <ClCompile Include="main.cpp" />
@@ -167,6 +169,8 @@
     <ClCompile Include="WithdrawUI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BookedTicketManager.h" />
+    <ClInclude Include="BookedTicketManagerUI.h" />
     <ClInclude Include="Buyer.h" />
     <ClInclude Include="Info.h" />
     <ClInclude Include="RegisterTicketManager.h" />

@@ -28,9 +28,24 @@ Timer & Ticket::getAuctionTimer()
 	return auctionTimer;
 }
 
+Timer & Ticket::getLTATimer()
+{
+	return ltaTimer;
+}
+
 bool Ticket::isUnderAuction() const
 {
-	return ltaTimer.isExpired();
+	return ltaTimer.isExpired() && !auctionTimer.isExpired();
+}
+
+int Ticket::getPrice() const
+{
+	return price;
+}
+
+void Ticket::setPrice(int price)
+{
+	this->price = price;
 }
 
 Ticket::Ticket(int price, std::string time, std::string home, std::string away, std::string position, bool useLTA)
@@ -72,11 +87,8 @@ bool operator==(const std::shared_ptr<Ticket>& lhs, Ticket * rhs)
 std::ostream & operator<<(std::ostream & os, const Ticket & ticket)
 {
 	if (ticket.isUnderAuction()) {
-		time_t remaining = parseTime(Timer::getCurrentTime()) - parseTime(ticket.ltaTimer.getDeadline());
-		char buf[32];
-		strftime(buf, sizeof(buf), "%H:%M", localtime(&remaining));
 		os << ticket.time << " " << ticket.home << " "
-			<< ticket.away << " " << ticket.seatNumber << " " << buf;
+			<< ticket.away << " " << ticket.seatNumber;
 	}
 	else {
 		os << ticket.price << " " << ticket.time << " " << ticket.home << " "

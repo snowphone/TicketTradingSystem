@@ -9,19 +9,6 @@
 
 void Seller::printTickets() const
 {
-	std::vector<Ticket*> ticketList;
-	for (auto it = registeredTickets.begin(); it != registeredTickets.end(); ++it)
-		ticketList.push_back(it->get());
-	for (auto it = soldTickets.begin(); it != soldTickets.end(); ++it)
-		ticketList.push_back(it->get());
-
-	sort(ticketList.begin(), ticketList.end(), [](Ticket* lhs, Ticket* rhs) { return lhs->getTime() < rhs->getTime(); });
-
-
-	for (Ticket* t : ticketList) {
-		std::cout << t << " " << t->isLTA() << " " 
-			<< (bool)std::count(soldTickets.begin(), soldTickets.end(), t) << std::endl;
-	}
 }
 
 const Info & Seller::getInfo() const

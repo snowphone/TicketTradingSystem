@@ -50,7 +50,8 @@ void Timer::update()
 		if ((*it)->isExpired()) {
 			if((*it)->callback)
 				(*it)->callback();
-			list.erase(it);
+			it = list.erase(it);
+			--it;
 		}
 	}
 }

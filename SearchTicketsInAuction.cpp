@@ -1,5 +1,6 @@
 #include "SearchTicketsInAuction.h"
 #include "UserCollection.h"
+#include <ctime>
 #include <algorithm>
 
 
@@ -33,9 +34,8 @@ void SearchTicketsInAuction::finishBidding()
 		/*    입찰자 선정   */
 
 		//최대 입찰 금액을 선정한 입찰자를 선정
-		Buyer* winner = std::max_element(bidders.begin(), bidders.end(),
-			[](std::pair<Buyer*, int>& l, std::pair<Buyer*, int>& r) {return l.second < r.second; })->first;
-		//winner->getTickets().push_back(*ticketptr);
+		auto[winner, price] = *std::max_element(bidders.begin(), bidders.end(),
+			[](std::pair<Buyer*, int>& l, std::pair<Buyer*, int>& r) {return l.second < r.second; });
 
 		/*    판매자 파악하기    */
 		auto& sellers = UserCollection::get().getSellers();
@@ -44,6 +44,9 @@ void SearchTicketsInAuction::finishBidding()
 			for (auto ticketIter = ticketList.begin(); ticketIter != ticketList.end(); ++ticketIter) {
 				/*   판매자 및 판매할 티켓 확보   */
 				if (ticketSample == ticketIter->get()) {
+
+					//입찰가로 가격 갱신
+					ticketIter->operator->()->setPrice(price);
 
 					// 판매자의 판매 완료된 목록에 추가
 					seller.getSoldTickets().push_back(*ticketIter);
@@ -70,17 +73,23 @@ SearchTicketsInAuction & SearchTicketsInAuction::get()
 
 void SearchTicketsInAuction::show(std::string home)
 {
-	std::cout << "4.3. 경매 중인 티켓 검색" << std::endl
-		<< "> ";
+	std::cout << "4.3. 경매 중인 티켓 검색" << std::endl;
+	//경매중인 티켓 추출
 	currentView = UserCollection::get().getReservableTickets(home);
 	auto it = std::remove_if(currentView.begin(), currentView.end(), [](Ticket* t) {return !t->isUnderAuction(); });
 	currentView.erase(it, currentView.end());
-	sort(currentView.begin(), currentView.end(), [](Ticket* l, Ticket* r) {return l->getTime() < r->getTime(); });
-	for (Ticket* t : currentView)
-		std::cout << *t << std::endl;
 
-	if (currentView.empty())
-		std::cout << std::endl;
+	//시간순 정렬
+	sort(currentView.begin(), currentView.end(), [](Ticket* l, Ticket* r) {return l->getTime() < r->getTime(); });
+
+	//출력
+	for (Ticket* t : currentView) {
+		time_t remaining = parseTime(t->getAuctionTimer().getDeadline()) - parseTime(Timer::getCurrentTime());
+		const time_t hour = 3600;
+		char timeInStr[32];
+		sprintf(timeInStr, "%02d:%02d", remaining / hour, (remaining % hour) / 60);
+		std::cout << "> " << *t << " " << timeInStr << std::endl;
+	}
 }
 
 void SearchTicketsInAuction::bid(const Info & bidderInfo, std::string time, std::string away, std::string position, int price)
