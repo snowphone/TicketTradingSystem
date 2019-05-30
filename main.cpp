@@ -119,6 +119,7 @@ int main(int argc, char* argv[]) {
 				cout << "6.1. session 변경" << endl;
 				string id;
 				in >> id;
+				cout << "> " << id << endl;
 				currentUser = UserCollection::get().find(id);
 			}
 			else {

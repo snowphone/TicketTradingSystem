@@ -18,14 +18,15 @@ SearchTicketsInAuction* SearchTicketsInAuction::var = nullptr;
 void SearchTicketsInAuction::finishBidding()
 {
 	// 모든 경매 순회
+	//using Iter = std::pair<Ticket*, std::vector<std::pair<Buyer*, int>>>;
+	//auto end = std::partition(biddingList.begin(), biddingList.end(), [](Iter i) { return i.first->getAuctionTimer().isExpired(); });
 	for (auto iter = biddingList.begin(); iter != biddingList.end(); ++iter) {
-		auto&[ticketSample, bidders] = *iter;
-		if (!ticketSample->getAuctionTimer().isExpired())
-			continue;
+		auto[ticketSample, bidders] = *iter;
 
 		//경매가 종료된 티켓 -> 경매중인 리스트에서 제외
 		iter = biddingList.erase(iter);
-		--iter;
+		if(iter != biddingList.begin())
+			--iter;
 
 		//유찰 
 		if (bidders.empty())
@@ -63,6 +64,7 @@ void SearchTicketsInAuction::finishBidding()
 			}
 		}
 	}
+	//biddingList.erase(biddingList.begin(), end);
 }
 SearchTicketsInAuction & SearchTicketsInAuction::get()
 {
@@ -111,7 +113,7 @@ void SearchTicketsInAuction::bid(const Info & bidderInfo, std::string time, std:
 
 	//입찰
 	std::vector<std::pair<Buyer*, int>>& list = biddingList[ticket];
-
+	list.push_back({ bidder, price });
 }
 
 SearchTicketsInAuction::~SearchTicketsInAuction()

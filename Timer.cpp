@@ -46,14 +46,13 @@ Timer::~Timer()
 
 void Timer::update()
 {
-	for(auto it = list.begin(); it != list.end(); ++it){
-		if ((*it)->isExpired()) {
-			if((*it)->callback)
-				(*it)->callback();
-			it = list.erase(it);
-			--it;
+	auto end = std::partition(list.begin(), list.end(), [](Timer* t) { return t->isExpired(); });
+	for (auto it = list.begin(); it != end; ++it) {
+		if ((*it)->callback) {
+			(*it)->callback();
 		}
 	}
+	list.erase(list.begin(), end);
 }
 
 std::string makeTime(time_t t) {
