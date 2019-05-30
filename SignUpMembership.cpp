@@ -1,8 +1,8 @@
-#include "SignUpMembership.h"
-#include "UserCollection.h"
-#include "Seller.h"
-
 #include <iostream>
+
+#include "UserCollection.h"
+#include "SignUpMembership.h"
+#include "Seller.h"
 
 SignUpMembership* SignUpMembership::var = nullptr;
 
@@ -15,11 +15,13 @@ SignUpMembership&  SignUpMembership::get()
 
 void SignUpMembership::signUp(const Info & info)
 {
-	if (info.getUserType() == "seller") {
-		UserCollection::get().insert(Seller(info));
+	if (info.getUserType() == "buyer") {
+		Buyer buyer(info);
+		UserCollection::get().getBuyers().push_back(std::move(buyer));
 	}
 	else {
-		UserCollection::get().insert(Buyer(info));
+		Seller seller(info);
+		UserCollection::get().getSellers().push_back(seller);
 	}
 	std::cout << "1.1. 회원가입" << std::endl
 		<< "> " << info << std::endl;

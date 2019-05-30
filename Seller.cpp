@@ -6,16 +6,20 @@
 
 
 
+
 void Seller::printTickets() const
 {
-	TicketCollection tmp;
-	copy(registeredTickets.begin(), registeredTickets.end(), std::back_inserter(tmp));
-	copy(soldTickets.begin(), soldTickets.end(), std::back_inserter(tmp));
-	sort(tmp.begin(), tmp.end(), [](Ticket& lhs, Ticket& rhs) { return lhs.getTime() < rhs.getTime(); });
+	std::vector<Ticket*> ticketList;
+	for (auto it = registeredTickets.begin(); it != registeredTickets.end(); ++it)
+		ticketList.push_back(it->get());
+	for (auto it = soldTickets.begin(); it != soldTickets.end(); ++it)
+		ticketList.push_back(it->get());
+
+	sort(ticketList.begin(), ticketList.end(), [](Ticket* lhs, Ticket* rhs) { return lhs->getTime() < rhs->getTime(); });
 
 
-	for (Ticket& t : tmp) {
-		std::cout << t << " " << t.isLTA() << " " 
+	for (Ticket* t : ticketList) {
+		std::cout << t << " " << t->isLTA() << " " 
 			<< (bool)std::count(soldTickets.begin(), soldTickets.end(), t) << std::endl;
 	}
 }
@@ -30,12 +34,12 @@ bool Seller::empty() const
 	return registeredTickets.empty();
 }
 
-TicketCollection & Seller::getRegisteredTickets() 
+std::vector<std::shared_ptr<Ticket>> & Seller::getRegisteredTickets() 
 {
 	return registeredTickets;
 }
 
-TicketCollection & Seller::getSoldTickets()
+std::vector<std::shared_ptr<Ticket>> & Seller::getSoldTickets()
 {
 	return soldTickets;
 }
@@ -47,7 +51,6 @@ bool Seller::operator==(const Info & info) const
 
 Seller::Seller(const Info & info) :info(info)
 {
-
 }
 
 

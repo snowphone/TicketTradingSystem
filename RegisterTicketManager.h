@@ -8,8 +8,7 @@ class RegisterTicketManager
 public:
 	static void deleteHistory();
 	static RegisterTicketManager& get();
-	void addNewTicket(const Info * currentUser, int price,
- std::string time,
+	void addNewTicket(const Info * currentUser, int price, std::string time, 
 		std::string home, std::string away, std::string position, bool useLTA);
 	~RegisterTicketManager();
 };

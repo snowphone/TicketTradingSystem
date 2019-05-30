@@ -98,9 +98,6 @@
     <ClInclude Include="Seller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TicketCollection.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Ticket.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -16,7 +16,7 @@ class Ticket
 	Timer historyTimer;
 
 public:
-	bool operator==(const Ticket t) const;
+	bool operator==(const Ticket& t) const;
 	Ticket(int price, std::string time, std::string home, std::string away, std::string position, bool useLTA);
 	~Ticket();
 	bool isLTA() const;
@@ -28,4 +28,9 @@ public:
 
 };
 
+bool operator==(const std::shared_ptr<Ticket>& lhs, Ticket* rhs);
+
+
+
 std::ostream& operator<<(std::ostream& os, const Ticket& ticket);
+std::ostream& operator<<(std::ostream& os, const Ticket* ticket);

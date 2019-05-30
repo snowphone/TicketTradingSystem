@@ -3,8 +3,8 @@
 #include <algorithm>
 #include <variant>
 
-#include "Seller.h"
 #include "Buyer.h"
+#include "Seller.h"
 
 class UserCollection
 {
@@ -22,7 +22,7 @@ public:
 	std::vector<Ticket*> getReservableTickets(const std::string& home);
 	const Info* find(std::string id, std::string pw);
 	const Info* find(std::string id);
-	std::variant<Seller*, Buyer*> at(const Info& info);
+	std::variant<Seller*, Buyer*> operator[](const Info& info);
 	size_t size() const;
 	~UserCollection();
 };

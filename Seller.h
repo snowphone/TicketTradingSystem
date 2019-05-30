@@ -1,19 +1,21 @@
 #pragma once
+#include <vector>
+#include <memory>
 #include "Info.h"
-#include "TicketCollection.h"
+#include "Ticket.h"
 
 class Seller
 {
 	Info info;
-	TicketCollection registeredTickets;
-	TicketCollection soldTickets;
+	std::vector<std::shared_ptr<Ticket> > registeredTickets;
+	std::vector<std::shared_ptr<Ticket> > soldTickets;
 	
 public:
 	void printTickets() const;
 	const Info& getInfo() const;
 	bool empty() const;
-	TicketCollection& getRegisteredTickets();
-	TicketCollection& getSoldTickets();
+	std::vector<std::shared_ptr<Ticket>>& getRegisteredTickets();
+	std::vector<std::shared_ptr<Ticket>>& getSoldTickets();
 	bool operator==(const Info& info) const;
 	Seller(const Info& info);
 	~Seller();

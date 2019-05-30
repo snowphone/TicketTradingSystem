@@ -9,7 +9,7 @@ SearchReservableTicketUI::SearchReservableTicketUI()
 
 
 SearchReservableTicketUI* SearchReservableTicketUI::var = nullptr;
-SearchReservableTicketUI & SearchReservableTicketUI::get()
+SearchReservableTicketUI& SearchReservableTicketUI::get()
 {
 	if (!var)
 		var = new SearchReservableTicketUI();

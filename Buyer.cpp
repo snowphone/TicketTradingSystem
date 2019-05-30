@@ -6,7 +6,7 @@ const Info & Buyer::getInfo() const
 	return this->info;
 }
 
-TicketCollection & Buyer::getTickets()
+std::vector<std::shared_ptr<Ticket>>& Buyer::getTickets()
 {
 	return tickets;
 }
@@ -17,7 +17,7 @@ bool Buyer::empty() const
 	return tickets.empty();
 }
 
-bool Buyer::operator==(const Info & i) const
+bool Buyer::operator==(const Info& i) const
 {
 	return this->info == i;
 }

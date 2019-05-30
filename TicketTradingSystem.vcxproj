@@ -101,7 +101,8 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -183,7 +184,6 @@
     <ClInclude Include="SignUpMembership.h" />
     <ClInclude Include="SignUpMembershipUI.h" />
     <ClInclude Include="Ticket.h" />
-    <ClInclude Include="TicketCollection.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="UserCollection.h" />
     <ClInclude Include="Withdraw.h" />

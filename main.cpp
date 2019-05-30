@@ -21,7 +21,7 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
 #ifdef  _MSC_VER
-	system("chcp 65001");
+	system("chcp 65001");	//utf-8로 콘솔에 출력을 강제함
 #endif
 	ifstream in("input.txt");
 #ifndef _DEBUG

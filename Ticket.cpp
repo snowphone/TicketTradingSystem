@@ -6,7 +6,7 @@
 
 
 
-bool Ticket::operator==(const Ticket t) const
+bool Ticket::operator==(const Ticket& t) const
 {
 	using std::tie;
 	return tie(time, home, away, seatNumber, price, useLTA) 
@@ -42,7 +42,6 @@ Ticket::Ticket(int price, std::string time, std::string home, std::string away, 
 	if (useLTA) {
 		time_t tt = parseTime(time);
 		tt -= 24 * hour;
-		char buf[128];
 		this->ltaTimer.setTimer(makeTime(tt), nullptr);
 
 		tt = parseTime(time);
@@ -65,12 +64,17 @@ std::string Ticket::getAway() const
 	return away;
 }
 
+bool operator==(const std::shared_ptr<Ticket>& lhs, Ticket * rhs)
+{
+	return *lhs == *rhs;
+}
+
 std::ostream & operator<<(std::ostream & os, const Ticket & ticket)
 {
 	if (ticket.isUnderAuction()) {
 		time_t remaining = parseTime(Timer::getCurrentTime()) - parseTime(ticket.ltaTimer.getDeadline());
 		char buf[32];
-		strftime(buf, 32, "%H:%M", localtime(&remaining));
+		strftime(buf, sizeof(buf), "%H:%M", localtime(&remaining));
 		os << ticket.time << " " << ticket.home << " "
 			<< ticket.away << " " << ticket.seatNumber << " " << buf;
 	}
@@ -80,4 +84,9 @@ std::ostream & operator<<(std::ostream & os, const Ticket & ticket)
 
 	}
 	return os;
+}
+
+std::ostream & operator<<(std::ostream & os, const Ticket * ticket)
+{
+	return os << *ticket;
 }

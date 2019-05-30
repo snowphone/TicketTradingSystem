@@ -28,27 +28,36 @@ void SearchReservableTicketManager::show(std::string home)
 
 void SearchReservableTicketManager::reserve(const Info & buyerInfo, std::string time, std::string away, std::string position)
 {
+	//구매자 검색
+	auto user = UserCollection::get()[buyerInfo];
+	Buyer* buyer = std::get<Buyer*>(user);
+
 	//원하는 티켓 검색
-	const Ticket& ticket = **find_if(watchingTickets.begin(), watchingTickets.end(), [&](Ticket* t) {
+	const Ticket* ticketSample = *find_if(watchingTickets.begin(), watchingTickets.end(), [&](Ticket* t) {
 		return t->getTime() == time && t->getAway() == away && t->getPosition() == position;
 	});
-	//구매자 검색
-	auto user = UserCollection::get().at(buyerInfo);
-	std::get<Buyer*>(user)->getTickets().push_back(ticket);
-	std::vector<Seller>& sellers = UserCollection::get().getSellers();
 
 	//판매자 검색
-	Seller& seller = *find_if(sellers.begin(), sellers.end(), [&](Seller& sel) {
-		return std::count_if(sel.getRegisteredTickets().begin(), sel.getRegisteredTickets().end(),
-			[&](const Ticket& tic) {
-			return tic.getTime() == time && tic.getAway() == away && tic.getPosition() == position;
-		});
-	});
-	auto it = find(seller.getRegisteredTickets().begin(), seller.getRegisteredTickets().end(), ticket);
-	seller.getRegisteredTickets().erase(it);
-	seller.getSoldTickets().push_back(ticket);
+	std::vector<Seller>& sellers = UserCollection::get().getSellers();
+	for (Seller& seller : sellers) {
+		std::vector<std::shared_ptr<Ticket>>& tickets = seller.getRegisteredTickets();
+		for(auto ticketIter = tickets.begin(); ticketIter != tickets.end(); ++ticketIter) {
+			if (ticketIter->get() == ticketSample) {
+				//판매자의 판매 목록에 티켓 추가
+				seller.getSoldTickets().push_back(*ticketIter);
+
+				//판매자 -> 구매자로 소유권 양도
+				buyer->getTickets().push_back(std::move(*ticketIter));
+				tickets.erase(ticketIter);
+
+				goto print;
+			}
+		}
+	}
+
+print:
 	std::cout << "4.2. 티켓 예약" << std::endl
-		<< "> " << ticket << std::endl;
+		<< "> " << *ticketSample << std::endl;
 }
 
 SearchReservableTicketManager::~SearchReservableTicketManager()

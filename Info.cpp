@@ -16,8 +16,8 @@ Info::Info(std::string id, std::string pw, std::string name, std::string ssn, st
 
 bool Info::operator==(const Info & i) const
 {
-	return std::make_tuple(id, password, name, ssn, userType) == 
-		std::make_tuple(i.id, i.password, i.name, i.ssn, i.userType);
+	return std::tie(id, password, name, ssn, userType) 
+		== std::tie(i.id, i.password, i.name, i.ssn, i.userType);
 }
 
 std::string Info::getID() const

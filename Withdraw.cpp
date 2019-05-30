@@ -1,6 +1,6 @@
 #include "Withdraw.h"
 #include "UserCollection.h"
-#include "TicketCollection.h"
+#include "Ticket.h"
 
 
 
@@ -34,6 +34,6 @@ bool Withdraw::isRemovable(const Info & info)
 	if (info.getUserType() == "buyer")
 		return true;
 	/* Else: Seller */
-	auto user = UserCollection::get().at(info);
+	auto user = UserCollection::get()[info];
 	return std::get<Seller*>(user)->empty();
 }

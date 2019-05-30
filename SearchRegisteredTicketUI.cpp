@@ -16,7 +16,7 @@ SearchRegisteredTicketUI & SearchRegisteredTicketUI::get()
 	return *var;
 }
 
-void SearchRegisteredTicketUI::search(const Info & info)
+void SearchRegisteredTicketUI::search(const Info& info)
 {
 
 	SearchRegisteredTicket::get().search(info);

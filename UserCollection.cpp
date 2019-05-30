@@ -2,20 +2,20 @@
 #include "UserCollection.h"
 
 
-
 UserCollection::UserCollection()
 {
 }
 
 UserCollection* UserCollection::var = nullptr;
 
-UserCollection & UserCollection::get()
+UserCollection& UserCollection::get()
 {
 	if (!var)
 		var = new UserCollection();
 	return *var;
 }
 
+#if 0
 void UserCollection::insert(const Seller & seller)
 {
 	sellers.push_back(seller);
@@ -25,7 +25,7 @@ void UserCollection::insert(const Buyer & buyer)
 {
 	buyers.push_back(buyer);
 }
-
+#endif
 void UserCollection::erase(const Info & info)
 {
 	if (info.getUserType() == "seller") {
@@ -48,15 +48,27 @@ std::vector<Buyer>& UserCollection::getBuyers()
 	return buyers;
 }
 
-std::vector<Ticket*> UserCollection::getReservableTickets(const std::string & home)
+std::vector<Ticket*> UserCollection::getReservableTickets(const std::string& home)
 {
-	std::vector<Ticket*> tmp;
+	std::vector<Ticket*> reservableTickets;
+	//모든 판매자로부터
 	for (Seller& seller : sellers) {
-		std::for_each(seller.getRegisteredTickets().begin(), seller.getRegisteredTickets().end(), 
-			[&](auto& i) { tmp.push_back(&i); });
+		//판매중인 티켓 선택
+		std::vector<std::shared_ptr<Ticket>>& tickets = seller.getRegisteredTickets();
+#if 0
+		std::for_each(tickets.begin(), tickets.end(), 
+			[&](const std::shared_ptr<Ticket>& i) { reservableTickets.push_back(i.get()); });
+#else
+		for (auto it = tickets.begin(); it != tickets.end(); ++it)
+		{
+			reservableTickets.push_back(it->get());
+		}
+#endif
 	}
-	sort(tmp.begin(), tmp.end(), [](Ticket* lhs, Ticket* rhs) { return lhs->getTime() < rhs->getTime(); });
-	return tmp;
+	//시간순 정렬
+	sort(reservableTickets.begin(), reservableTickets.end(), [](Ticket* lhs, Ticket* rhs) { return lhs->getTime() < rhs->getTime(); });
+
+	return reservableTickets;
 }
 
 const Info * UserCollection::find(std::string id, std::string pw)
@@ -77,6 +89,7 @@ const Info * UserCollection::find(std::string id, std::string pw)
 
 const Info * UserCollection::find(std::string id)
 {
+	/* Requirements에는 없지만, 6.1. session변경을 위하여 추가로 구현하였다. */
 	auto buyerIter = std::find_if(buyers.begin(), buyers.end(), 
 		[&id](const Buyer& i) { return i.getInfo().getID() == id; });
 	if (buyerIter != buyers.end())
@@ -91,8 +104,7 @@ const Info * UserCollection::find(std::string id)
 }
 
 
-
-std::variant<Seller*, Buyer*> UserCollection::at(const Info & info)
+std::variant<Seller*, Buyer*> UserCollection::operator[](const Info & info)
 {
 	if (info.getUserType() == "seller") {
 		return &*find_if(sellers.begin(), sellers.end(), [&info](const Seller& i) {return i == info; });
@@ -101,7 +113,6 @@ std::variant<Seller*, Buyer*> UserCollection::at(const Info & info)
 		return &*find_if(buyers.begin(), buyers.end(), [&info](const Buyer& i) {return i == info; });
 	}
 }
-
 size_t UserCollection::size() const
 {
 	return sellers.size() + buyers.size();

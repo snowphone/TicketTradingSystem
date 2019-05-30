@@ -18,7 +18,7 @@ SearchRegisteredTicket & SearchRegisteredTicket::get()
 
 void SearchRegisteredTicket::search(const Info & info)
 {
-	auto user = UserCollection::get().at(info);
+	auto user = UserCollection::get()[info];
 	std::cout << "3.2. 등록티켓 조회 " << std::endl
 		<< "> ";
 	std::get<Seller*>(user)->printTickets();
