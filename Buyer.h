@@ -9,6 +9,7 @@ class Buyer
 	TicketCollection tickets;
 public:
 	const Info& getInfo() const;
+	TicketCollection& getTickets();
 	bool empty() const;
 	bool operator==(const Info& i) const;
 	Buyer(const Info& info);

@@ -38,23 +38,36 @@ void UserCollection::erase(const Info & info)
 	}
 }
 
-TicketCollection UserCollection::getReservableTickets(const std::string & home)
+std::vector<Seller>& UserCollection::getSellers()
 {
-	TicketCollection tmp;
+	return sellers;
+}
+
+std::vector<Buyer>& UserCollection::getBuyers()
+{
+	return buyers;
+}
+
+std::vector<Ticket*> UserCollection::getReservableTickets(const std::string & home)
+{
+	std::vector<Ticket*> tmp;
 	for (Seller& seller : sellers) {
-		std::copy(seller.getRegisteredTickets().begin(), seller.getRegisteredTickets().end(), std::back_inserter(tmp));
+		std::for_each(seller.getRegisteredTickets().begin(), seller.getRegisteredTickets().end(), 
+			[&](auto& i) { tmp.push_back(&i); });
 	}
-	sort(tmp.begin(), tmp.end(), [](Ticket& lhs, Ticket& rhs) { return lhs.getTime() < rhs.getTime(); });
+	sort(tmp.begin(), tmp.end(), [](Ticket* lhs, Ticket* rhs) { return lhs->getTime() < rhs->getTime(); });
 	return tmp;
 }
 
 const Info * UserCollection::find(std::string id, std::string pw)
 {
-	auto buyerIter = std::find_if(buyers.begin(), buyers.end(), [&id, &pw](const Buyer& i) { return i.getInfo().checkID(id, pw); });
+	auto buyerIter = std::find_if(buyers.begin(), buyers.end(), 
+		[&id, &pw](const Buyer& i) { return i.getInfo().checkID(id, pw); });
 	if (buyerIter != buyers.end())
 		return &buyerIter->getInfo();
 
-	auto sellerIter = std::find_if(sellers.begin(), sellers.end(), [&id, &pw](const Seller& i) { return i.getInfo().checkID(id, pw); });
+	auto sellerIter = std::find_if(sellers.begin(), sellers.end(), 
+		[&id, &pw](const Seller& i) { return i.getInfo().checkID(id, pw); });
 	if (sellerIter != sellers.end())
 		return &sellerIter->getInfo();
 

@@ -80,6 +80,7 @@ int main(int argc, char* argv[]) {
 				//티켓 예약
 				string time, away, position;
 				in >> time >> away >> position;
+				SearchReservableTicketUI::get().reserve(*currentUser, time, away, position);
 			}
 			else if (second == 3) {
 				//경매중 티켓 검색

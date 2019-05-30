@@ -21,6 +21,11 @@ void SearchReservableTicketUI::search(std::string home)
 	SearchReservableTicketManager::get().show(home);
 }
 
+void SearchReservableTicketUI::reserve(const Info& buyerInfo, std::string time, std::string away, std::string position)
+{
+	SearchReservableTicketManager::get().reserve(buyerInfo, time, away, position);
+}
+
 SearchReservableTicketUI::~SearchReservableTicketUI()
 {
 }

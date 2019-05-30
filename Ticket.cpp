@@ -15,6 +15,16 @@ std::string Ticket::getTime() const
 	return time;
 }
 
+std::string Ticket::getPosition() const
+{
+	return seatNumber;
+}
+
+bool Ticket::isUnderAuction() const
+{
+	return false;
+}
+
 Ticket::Ticket(int price, std::string time, std::string home, std::string away, std::string position, bool useLTA)
 	:price(price), time(time), home(home), away(away), seatNumber(position), useLTA(useLTA)
 {
@@ -27,6 +37,11 @@ Ticket::~Ticket()
 bool Ticket::isLTA() const
 {
 	return useLTA;
+}
+
+std::string Ticket::getAway() const
+{
+	return away;
 }
 
 std::ostream & operator<<(std::ostream & os, const Ticket & ticket)

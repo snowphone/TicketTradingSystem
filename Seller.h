@@ -12,7 +12,8 @@ public:
 	void printTickets() const;
 	const Info& getInfo() const;
 	bool empty() const;
-	const TicketCollection& getRegisteredTickets() const;
+	TicketCollection& getRegisteredTickets();
+	TicketCollection& getSoldTickets();
 	void addTicket(const Ticket ticket);
 	bool operator==(const Info& info) const;
 	Seller(const Info& info);

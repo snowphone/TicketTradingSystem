@@ -30,14 +30,14 @@ bool Seller::empty() const
 	return registeredTickets.empty();
 }
 
-const TicketCollection & Seller::getRegisteredTickets() const
+TicketCollection & Seller::getRegisteredTickets() 
 {
 	return registeredTickets;
 }
 
-void Seller::addTicket(const Ticket ticket)
+TicketCollection & Seller::getSoldTickets()
 {
-	registeredTickets.push_back(ticket);
+	return soldTickets;
 }
 
 bool Seller::operator==(const Info & info) const

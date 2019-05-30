@@ -6,6 +6,12 @@ const Info & Buyer::getInfo() const
 	return this->info;
 }
 
+TicketCollection & Buyer::getTickets()
+{
+	return tickets;
+}
+
+
 bool Buyer::empty() const
 {
 	return tickets.empty();
