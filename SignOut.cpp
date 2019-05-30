@@ -18,7 +18,9 @@ SignOut & SignOut::get()
 
 void SignOut::requestSignOut(const Info & info)
 {
-	std::cout << info.getID() << std::endl;
+
+	std::cout << "2.2 로그아웃" << std::endl
+		<< "> " << info.getID() << std::endl;
 }
 
 SignOut::~SignOut()

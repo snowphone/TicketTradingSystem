@@ -21,7 +21,8 @@ void RegisterTicketManager::addNewTicket(const Info * currentUser, int price, st
 	Ticket ticket(price, time, home, away, position, useLTA);
 	auto user = UserCollection::get().at(*currentUser);
 	std::get<Seller*>(user)->addTicket(ticket);
-	std::cout << ticket << std::endl;
+	std::cout << "3.1. 판매티켓 등록" << std::endl
+		<< "> " << ticket << " " << ticket.isLTA() << std::endl;
 }
 
 RegisterTicketManager::~RegisterTicketManager()

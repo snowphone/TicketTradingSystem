@@ -10,14 +10,18 @@
 #include "SignOutUI.h"
 #include "RegisterTicketUI.h"
 #include "SearchRegisteredTicketUI.h"
+#include "SearchReservableTicketUI.h"
 
 using namespace std;
 
 
 int main(int argc, char* argv[]) {
+#ifdef  _MSC_VER
+	system("chcp 65001");
+#endif
 	ifstream in("input.txt");
 #ifndef _DEBUG
-	freopen("output.txt", "w", stdout);	//cout -> output.txt·Î ¸®µð·º¼Ç
+	freopen("output.txt", "w", stdout);	//cout -> output.txtë¡œ ë¦¬ë””ë ‰ì…˜
 #endif
 	const Info* currentUser = nullptr;
 	while (in) {
@@ -27,32 +31,32 @@ int main(int argc, char* argv[]) {
 		switch (first)
 		{
 		case 1:
-			if (second == 1) { //È¸¿ø°¡ÀÔ
+			if (second == 1) { //íšŒì›ê°€ìž…
 				string id, pw, name, ssn, userType;
 				in >> id >> pw >> name >> ssn >> userType;
 				SignUpMembershipUI::get().requestSignUP(Info(id, pw, name, ssn, userType));
 			}
 			else {
-				//È¸¿øÅ»Åð
+				//íšŒì›íƒˆí‡´
 				WithdrawUI::get().requestWithdraw(*currentUser);
 			}
 			break;
 		case 2:
 			if (second == 1) {
-				//·Î±×ÀÎ
+				//ë¡œê·¸ì¸
 				string id, pw;
 				in >> id >> pw;
 				currentUser = SignInUI::get().requestSignIn(id, pw);
 			}
 			else {
-				//·Î±×¾Æ¿ô
+				//ë¡œê·¸ì•„ì›ƒ
 				SignOutUI::get().requestSignOut(*currentUser);
 				currentUser = nullptr;
 			}
 			break;
 		case 3:
 			if (second == 1) {
-				//ÆÇ¸Å Æ¼ÄÏ µî·Ï
+				//íŒë§¤ í‹°ì¼“ ë“±ë¡
 				string time, home, away, position;
 				bool lta;
 				int price;
@@ -60,36 +64,49 @@ int main(int argc, char* argv[]) {
 				RegisterTicketUI::get().createNewTicket(currentUser, price, time, home, away, position, lta);
 			}
 			else {
-				//µî·Ï Æ¼ÄÏ Á¶È¸
+				//ë“±ë¡ í‹°ì¼“ ì¡°íšŒ
 				SearchRegisteredTicketUI::get().search(*currentUser);
 			}
 			break;
 		case 4:
 			if (second == 1) {
-				//Æ¼ÄÏ °Ë»ö
+				//í‹°ì¼“ ê²€ìƒ‰
+				string home;
+				in >> home;
+				SearchReservableTicketUI::get().search(home);
+
 			}
 			else if(second == 2) {
-				//Æ¼ÄÏ ¿¹¾à
+				//í‹°ì¼“ ì˜ˆì•½
+				string time, away, position;
+				in >> time >> away >> position;
 			}
 			else if (second == 3) {
-				//°æ¸ÅÁß Æ¼ÄÏ °Ë»ö
+				//ê²½ë§¤ì¤‘ í‹°ì¼“ ê²€ìƒ‰
+				string home;
+				in >> home;
 			}
 			else if (second == 4) {
-				//°æ¸Å Âü¿©
+				//ê²½ë§¤ ì°¸ì—¬
+				string time, away, position;
+				int price;
+				in >> time >> away >> position >> price;
 			}
 			else {
-				//¿¹¾à Á¤º¸ Á¶È¸
+				//ì˜ˆì•½ ì •ë³´ ì¡°íšŒ
 			}
 			break;
 		case 5:
-			//ÇöÀç½Ã°£ ¼³Á¤
+			//í˜„ìž¬ì‹œê°„ ì„¤ì •
 			break;
 		case 6:
 			if (second == 1) {
-				//¼¼¼Ç º¯°æ
+				//ì„¸ì…˜ ë³€ê²½
+				string time;
+				in >> time;
 			}
 			else {
-				//guest sessionÀ¸·Î º¯°æ
+				//guest sessionìœ¼ë¡œ ë³€ê²½
 			}
 			break;
 		case 7:

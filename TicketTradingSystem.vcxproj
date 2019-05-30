@@ -101,6 +101,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -147,6 +148,8 @@
     <ClCompile Include="RegisterTicketUI.cpp" />
     <ClCompile Include="SearchRegisteredTicket.cpp" />
     <ClCompile Include="SearchRegisteredTicketUI.cpp" />
+    <ClCompile Include="SearchReservableTicketManager.cpp" />
+    <ClCompile Include="SearchReservableTicketUI.cpp" />
     <ClCompile Include="Seller.cpp" />
     <ClCompile Include="SignIn.cpp" />
     <ClCompile Include="SignInUI.cpp" />
@@ -166,6 +169,7 @@
     <ClInclude Include="RegisterTicketUI.h" />
     <ClInclude Include="SearchRegisteredTicket.h" />
     <ClInclude Include="SearchRegisteredTicketUI.h" />
+    <ClInclude Include="SearchReservableTicketUI.h" />
     <ClInclude Include="Seller.h" />
     <ClInclude Include="SignIn.h" />
     <ClInclude Include="SignInUI.h" />

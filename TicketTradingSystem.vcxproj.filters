@@ -69,6 +69,12 @@
     <ClCompile Include="SearchRegisteredTicket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SearchReservableTicketUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SearchReservableTicketManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SignUpMembershipUI.h">
@@ -123,6 +129,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SearchRegisteredTicket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SearchReservableTicketUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

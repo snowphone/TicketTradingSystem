@@ -38,6 +38,16 @@ void UserCollection::erase(const Info & info)
 	}
 }
 
+TicketCollection UserCollection::getReservableTickets(const std::string & home)
+{
+	TicketCollection tmp;
+	for (Seller& seller : sellers) {
+		std::copy(seller.getRegisteredTickets().begin(), seller.getRegisteredTickets().end(), std::back_inserter(tmp));
+	}
+	sort(tmp.begin(), tmp.end(), [](Ticket& lhs, Ticket& rhs) { return lhs.getTime() < rhs.getTime(); });
+	return tmp;
+}
+
 const Info * UserCollection::find(std::string id, std::string pw)
 {
 	auto buyerIter = std::find_if(buyers.begin(), buyers.end(), [&id, &pw](const Buyer& i) { return i.getInfo().checkID(id, pw); });

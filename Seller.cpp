@@ -15,7 +15,8 @@ void Seller::printTickets() const
 
 
 	for (Ticket& t : tmp) {
-		std::cout << t << " " << (bool)std::count(soldTickets.begin(), soldTickets.end(), t) << std::endl;
+		std::cout << t << " " << t.isLTA() << " " 
+			<< (bool)std::count(soldTickets.begin(), soldTickets.end(), t) << std::endl;
 	}
 }
 
@@ -27,6 +28,11 @@ const Info & Seller::getInfo() const
 bool Seller::empty() const
 {
 	return registeredTickets.empty();
+}
+
+const TicketCollection & Seller::getRegisteredTickets() const
+{
+	return registeredTickets;
 }
 
 void Seller::addTicket(const Ticket ticket)

@@ -19,14 +19,13 @@ SignIn & SignIn::get()
 
 const Info * SignIn::putIdPw(std::string id, std::string pw)
 {
+	std::cout << "2.1. 로그인" << std::endl
+		<< "> ";
 	auto info = UserCollection::get().find(id, pw);
 	if (info) {
 		std::cout << id << " " << pw << std::endl;
 		return info;
 	}
-#ifdef _DEBUG
-	std::cout << "wrong id" << std::endl;
-#endif
 	return nullptr;
 }
 

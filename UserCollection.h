@@ -17,6 +17,7 @@ public:
 	void insert(const Seller& seller);
 	void insert(const Buyer& buyer);
 	void erase(const Info& info);
+	TicketCollection getReservableTickets(const std::string& home);
 	const Info* find(std::string id, std::string pw);
 	std::variant<Seller*, Buyer*> at(const Info& info);
 	size_t size() const;

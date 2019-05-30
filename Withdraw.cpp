@@ -17,6 +17,8 @@ Withdraw & Withdraw::get() {
 }
 
 void Withdraw::requestWithdraw(const Info & info) {
+	std::cout << "1.2. 회원탈퇴" << std::endl
+		<< "> ";
 	if (isRemovable(info)) {
 		std::cout << info.getID() << std::endl;
 		UserCollection::get().erase(info);

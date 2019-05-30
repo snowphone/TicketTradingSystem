@@ -16,6 +16,7 @@ public:
 	std::string getTime() const;
 	Ticket(int price, std::string time, std::string home, std::string away, std::string position, bool useLTA);
 	~Ticket();
+	bool isLTA() const;
 };
 
 std::ostream& operator<<(std::ostream& os, const Ticket& ticket);

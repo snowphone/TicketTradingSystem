@@ -24,9 +24,14 @@ Ticket::~Ticket()
 {
 }
 
+bool Ticket::isLTA() const
+{
+	return useLTA;
+}
+
 std::ostream & operator<<(std::ostream & os, const Ticket & ticket)
 {
 	os << ticket.price << " " << ticket.time << " " << ticket.home << " "
-		<< ticket.away << " " << ticket.seatNumber << " " << ticket.useLTA;
+		<< ticket.away << " " << ticket.seatNumber;
 	return os;
 }

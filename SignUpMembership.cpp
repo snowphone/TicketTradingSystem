@@ -21,7 +21,8 @@ void SignUpMembership::signUp(const Info & info)
 	else {
 		UserCollection::get().insert(Buyer(info));
 	}
-	std::cout << info << std::endl;
+	std::cout << "1.1. 회원가입" << std::endl
+		<< "> " << info << std::endl;
 }
 
 
