@@ -150,6 +150,8 @@
     <ClCompile Include="SearchRegisteredTicketUI.cpp" />
     <ClCompile Include="SearchReservableTicketManager.cpp" />
     <ClCompile Include="SearchReservableTicketUI.cpp" />
+    <ClCompile Include="SearchTicketsInAuction.cpp" />
+    <ClCompile Include="SearchTicketsInAuctionUI.cpp" />
     <ClCompile Include="Seller.cpp" />
     <ClCompile Include="SignIn.cpp" />
     <ClCompile Include="SignInUI.cpp" />
@@ -158,6 +160,7 @@
     <ClCompile Include="SignUpMembership.cpp" />
     <ClCompile Include="SignUpMembershipUI.cpp" />
     <ClCompile Include="Ticket.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="UserCollection.cpp" />
     <ClCompile Include="Withdraw.cpp" />
     <ClCompile Include="WithdrawUI.cpp" />
@@ -170,6 +173,8 @@
     <ClInclude Include="SearchRegisteredTicket.h" />
     <ClInclude Include="SearchRegisteredTicketUI.h" />
     <ClInclude Include="SearchReservableTicketUI.h" />
+    <ClInclude Include="SearchTicketsInAuction.h" />
+    <ClInclude Include="SearchTicketsInAuctionUI.h" />
     <ClInclude Include="Seller.h" />
     <ClInclude Include="SignIn.h" />
     <ClInclude Include="SignInUI.h" />
@@ -179,6 +184,7 @@
     <ClInclude Include="SignUpMembershipUI.h" />
     <ClInclude Include="Ticket.h" />
     <ClInclude Include="TicketCollection.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="UserCollection.h" />
     <ClInclude Include="Withdraw.h" />
     <ClInclude Include="WithdrawUI.h" />

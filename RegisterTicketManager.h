@@ -6,6 +6,7 @@ class RegisterTicketManager
 	static RegisterTicketManager* var;
 
 public:
+	static void deleteHistory();
 	static RegisterTicketManager& get();
 	void addNewTicket(const Info * currentUser, int price,
  std::string time,

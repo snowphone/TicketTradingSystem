@@ -22,19 +22,22 @@ void SearchReservableTicketManager::show(std::string home)
 		<< "> ";
 	this->watchingTickets = UserCollection::get().getReservableTickets(home);
 	for (auto& ticketPtr : watchingTickets) {
-		//TODO
 		std::cout << *ticketPtr << std::endl;
 	}
 }
 
 void SearchReservableTicketManager::reserve(const Info & buyerInfo, std::string time, std::string away, std::string position)
 {
-	Ticket ticket = **find_if(watchingTickets.begin(), watchingTickets.end(), [&](Ticket* t) {
+	//원하는 티켓 검색
+	const Ticket& ticket = **find_if(watchingTickets.begin(), watchingTickets.end(), [&](Ticket* t) {
 		return t->getTime() == time && t->getAway() == away && t->getPosition() == position;
 	});
+	//구매자 검색
 	auto user = UserCollection::get().at(buyerInfo);
 	std::get<Buyer*>(user)->getTickets().push_back(ticket);
 	std::vector<Seller>& sellers = UserCollection::get().getSellers();
+
+	//판매자 검색
 	Seller& seller = *find_if(sellers.begin(), sellers.end(), [&](Seller& sel) {
 		return std::count_if(sel.getRegisteredTickets().begin(), sel.getRegisteredTickets().end(),
 			[&](const Ticket& tic) {

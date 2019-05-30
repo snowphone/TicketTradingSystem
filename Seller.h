@@ -14,7 +14,6 @@ public:
 	bool empty() const;
 	TicketCollection& getRegisteredTickets();
 	TicketCollection& getSoldTickets();
-	void addTicket(const Ticket ticket);
 	bool operator==(const Info& info) const;
 	Seller(const Info& info);
 	~Seller();

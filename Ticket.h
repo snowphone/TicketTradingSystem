@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include "Timer.h"
 class Ticket
 {
 	friend std::ostream& operator<<(std::ostream& os, const Ticket& ticket);
@@ -10,6 +11,9 @@ class Ticket
 		seatNumber;
 	int price;
 	bool useLTA;
+	Timer ltaTimer;
+	Timer auctionTimer;
+	Timer historyTimer;
 
 public:
 	bool operator==(const Ticket t) const;
@@ -19,6 +23,7 @@ public:
 	std::string getTime() const;
 	std::string getAway() const;
 	std::string getPosition() const;
+	Timer& getAuctionTimer();
 	bool isUnderAuction() const;
 
 };

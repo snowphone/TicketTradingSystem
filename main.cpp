@@ -11,6 +11,10 @@
 #include "RegisterTicketUI.h"
 #include "SearchRegisteredTicketUI.h"
 #include "SearchReservableTicketUI.h"
+#include "SearchTicketsInAuctionUI.h"
+
+#include "Timer.h"
+#include "UserCollection.h"
 
 using namespace std;
 
@@ -86,31 +90,41 @@ int main(int argc, char* argv[]) {
 				//경매중 티켓 검색
 				string home;
 				in >> home;
+				SearchTicketsInAuctionUI::get().search(home);
 			}
 			else if (second == 4) {
 				//경매 참여
 				string time, away, position;
 				int price;
 				in >> time >> away >> position >> price;
+				SearchTicketsInAuctionUI::get().bid(*currentUser, time, away, position, price);
 			}
 			else {
 				//예약 정보 조회
 			}
 			break;
 		case 5:
-			//현재시간 설정
+		{
+			cout << "5.1. 현재시간 설정" << endl;
+			string time;
+			in >> time;
+			Timer::setCurrentTime(time);
 			break;
+		}
 		case 6:
 			if (second == 1) {
-				//세션 변경
-				string time;
-				in >> time;
+				cout << "6.1. session 변경" << endl;
+				string id;
+				in >> id;
+				currentUser = UserCollection::get().find(id);
 			}
 			else {
-				//guest session으로 변경
+				cout << "6.2. guest session으로 변경" << endl;
+				currentUser = nullptr;
 			}
 			break;
 		case 7:
+			cout << "7.1. 종료" << endl;
 			return 0;
 		default:
 			break;
