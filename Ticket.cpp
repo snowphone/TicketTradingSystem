@@ -28,6 +28,11 @@ Timer& Ticket::getAuctionTimer()
 	return auctionTimer;
 }
 
+Timer & Ticket::gethistoryTimer()
+{
+	return historyTimer;
+}
+
 Timer& Ticket::getLTATimer()
 {
 	return ltaTimer;
@@ -53,15 +58,15 @@ Ticket::Ticket(int price, std::string time, std::string home, std::string away, 
 {
 	const time_t hour = 3600;
 	time_t year = hour * 24 * 365;
-	historyTimer.setTimer(makeTime(parseTime(time) + year), RegisterTicketManager::deleteHistory);
+	historyTimer.setTimer(Timer::makeTime(Timer::parseTime(time) + year), RegisterTicketManager::deleteHistory);
 	if (useLTA) {
-		time_t tt = parseTime(time);
+		time_t tt = Timer::parseTime(time);
 		tt -= 24 * hour;
-		this->ltaTimer.setTimer(makeTime(tt), nullptr);
+		this->ltaTimer.setTimer(Timer::makeTime(tt), nullptr);
 
-		tt = parseTime(time);
+		tt = Timer::parseTime(time);
 		tt -= 6 * hour;
-		auctionTimer.setTimer(makeTime(tt), SearchTicketsInAuction::finishBidding);
+		auctionTimer.setTimer(Timer::makeTime(tt), SearchTicketsInAuction::finishBidding);
 	}
 }
 

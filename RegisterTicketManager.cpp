@@ -11,6 +11,20 @@ RegisterTicketManager::RegisterTicketManager()
 RegisterTicketManager* RegisterTicketManager::var = nullptr;
 void RegisterTicketManager::deleteHistory()
 {
+	std::vector<Seller>& sellers = UserCollection::get().getSellers();
+	for (Seller& seller : sellers) {
+		// 판매가 완료된 1년이 지난 티켓 삭제
+		auto& soldTickets = seller.getSoldTickets();
+		auto it = std::remove_if(soldTickets.begin(), soldTickets.end(), [](std::shared_ptr<Ticket>& i) {return i->gethistoryTimer().isExpired(); });
+		//TODO
+		soldTickets.erase(it, soldTickets.end());	//여기서 터짐. 아마 복사하다가 문제가 생긴 모양
+
+		// 판매중인 1년이 지난 티켓 삭제
+		auto& registeredTickets = seller.getRegisteredTickets();
+		it = std::remove_if(registeredTickets.begin(), registeredTickets.end(), [](std::shared_ptr<Ticket>& i) {return i->gethistoryTimer().isExpired(); });
+		registeredTickets.erase(it, registeredTickets.end());
+
+	}
 }
 RegisterTicketManager & RegisterTicketManager::get()
 {

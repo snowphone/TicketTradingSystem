@@ -24,6 +24,7 @@ public:
 	std::string getAway() const;
 	std::string getPosition() const;
 	Timer& getAuctionTimer();
+	Timer& gethistoryTimer();
 	Timer& getLTATimer();
 	bool isUnderAuction() const;
 	int getPrice() const;
