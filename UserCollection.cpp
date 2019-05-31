@@ -83,22 +83,6 @@ const Info * UserCollection::find(std::string id, std::string pw)
 
 }
 
-const Info * UserCollection::find(std::string id)
-{
-	/* Requirements에는 없지만, 6.1. session변경을 위하여 추가로 구현하였다. */
-	auto buyerIter = std::find_if(buyers.begin(), buyers.end(), 
-		[&id](const Buyer& i) { return i.getInfo().getID() == id; });
-	if (buyerIter != buyers.end())
-		return &buyerIter->getInfo();
-
-	auto sellerIter = std::find_if(sellers.begin(), sellers.end(), 
-		[&id](const Seller& i) { return i.getInfo().getID() == id; });
-	if (sellerIter != sellers.end())
-		return &sellerIter->getInfo();
-
-	return nullptr;
-}
-
 
 std::variant<Seller*, Buyer*> UserCollection::operator[](const Info & info)
 {

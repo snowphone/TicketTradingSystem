@@ -46,11 +46,12 @@ void SearchTicketsInAuction::finishBidding()
 				/*   판매자 및 판매할 티켓 확보   */
 				if (ticketSample == ticketIter->get()) {
 
+					// 판매자의 판매 완료된 목록에 추가
+					seller.getSoldTickets().push_back(std::make_shared<Ticket>(**ticketIter));
+
 					//입찰가로 가격 갱신
 					ticketIter->operator->()->setPrice(price);
 
-					// 판매자의 판매 완료된 목록에 추가
-					seller.getSoldTickets().push_back(*ticketIter);
 
 					// 판매자 -> 구매자로 티켓 소유권 양도
 					winner->getTickets().push_back(std::move(*ticketIter));

@@ -28,7 +28,8 @@ int main(int argc, char* argv[]) {
 #ifndef _DEBUG
 	freopen("output.txt", "w", stdout);	//cout -> output.txt로 리디렉션
 #endif
-	const Info* currentUser = nullptr;
+	vector<const Info*> sessions;
+	vector<const Info*>::iterator currentUser = sessions.end();
 	while (in) {
 		int first, second;
 		string input;
@@ -43,7 +44,7 @@ int main(int argc, char* argv[]) {
 			}
 			else {
 				//회원탈퇴
-				WithdrawUI::get().requestWithdraw(*currentUser);
+				WithdrawUI::get().requestWithdraw(**currentUser);
 			}
 			break;
 		case 2:
@@ -51,29 +52,35 @@ int main(int argc, char* argv[]) {
 				//로그인
 				string id, pw;
 				in >> id >> pw;
-				currentUser = SignInUI::get().requestSignIn(id, pw);
+				sessions.push_back(SignInUI::get().requestSignIn(id, pw));
+				currentUser = sessions.end() - 1;
 			}
 			else {
 				//로그아웃
-				SignOutUI::get().requestSignOut(*currentUser);
-				currentUser = nullptr;
+				SignOutUI::get().requestSignOut(**currentUser);
+				sessions.erase(currentUser);
+				currentUser = sessions.end();
 			}
 			break;
 		case 3:
-			if (second == 1) {
+			if (currentUser == sessions.end())
+				break;	//guest session은 진입 불가
+			else if (second == 1) {
 				//판매 티켓 등록
 				string time, home, away, position;
 				bool lta;
 				int price;
 				in >> price >> time >> home >> away >> position >> lta;
-				RegisterTicketUI::get().createNewTicket(currentUser, price, time, home, away, position, lta);
+				RegisterTicketUI::get().createNewTicket(*currentUser, price, time, home, away, position, lta);
 			}
 			else {
 				//등록 티켓 조회
-				SearchRegisteredTicketUI::get().search(*currentUser);
+				SearchRegisteredTicketUI::get().search(**currentUser);
 			}
 			break;
 		case 4:
+			if (currentUser == sessions.end())
+				break;	//guest session은 진입 불가
 			if (second == 1) {
 				//티켓 검색
 				string home;
@@ -85,7 +92,7 @@ int main(int argc, char* argv[]) {
 				//티켓 예약
 				string time, away, position;
 				in >> time >> away >> position;
-				SearchReservableTicketUI::get().reserve(*currentUser, time, away, position);
+				SearchReservableTicketUI::get().reserve(**currentUser, time, away, position);
 			}
 			else if (second == 3) {
 				//경매중 티켓 검색
@@ -98,11 +105,11 @@ int main(int argc, char* argv[]) {
 				string time, away, position;
 				int price;
 				in >> time >> away >> position >> price;
-				SearchTicketsInAuctionUI::get().bid(*currentUser, time, away, position, price);
+				SearchTicketsInAuctionUI::get().bid(**currentUser, time, away, position, price);
 			}
 			else {
 				//예약 정보 조회
-				BookedTicketManagerUI::get().search(*currentUser);
+				BookedTicketManagerUI::get().search(**currentUser);
 			}
 			break;
 		case 5:
@@ -120,11 +127,11 @@ int main(int argc, char* argv[]) {
 				string id;
 				in >> id;
 				cout << "> " << id << endl;
-				currentUser = UserCollection::get().find(id);
+				currentUser = find_if(sessions.begin(), sessions.end(), [&id](const Info* i) {return i->getID() == id; });
 			}
 			else {
 				cout << "6.2. guest session으로 변경" << endl;
-				currentUser = nullptr;
+				currentUser = sessions.end();
 			}
 			break;
 		case 7:

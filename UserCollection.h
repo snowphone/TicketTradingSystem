@@ -21,7 +21,6 @@ public:
 	std::vector<Buyer>& getBuyers();
 	std::vector<Ticket*> getReservableTickets(const std::string& home);
 	const Info* find(std::string id, std::string pw);
-	const Info* find(std::string id);
 	std::variant<Seller*, Buyer*> operator[](const Info& info);
 	size_t size() const;
 	~UserCollection();
