@@ -43,7 +43,8 @@ std::string Timer::getDeadline() const
 Timer::~Timer()
 {
 	auto it = std::find(list.begin(), list.end(), this);
-	list.erase(it);
+	if(it != list.end())
+		list.erase(it);
 }
 
 void Timer::update()

@@ -17,13 +17,15 @@ class Ticket
 
 public:
 	bool operator==(const Ticket& t) const;
-	Ticket(int price, std::string time, std::string home, std::string away, std::string position, bool useLTA);
+	Ticket(int price, std::string time, std::string home, 
+		std::string away, std::string position, bool useLTA);
 	~Ticket();
 	bool isLTA() const;
 	std::string getTime() const;
 	std::string getAway() const;
 	std::string getPosition() const;
 	Timer& getAuctionTimer();
+	Timer& getHistoryTimer();
 	Timer& getLTATimer();
 	bool isUnderAuction() const;
 	int getPrice() const;

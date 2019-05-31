@@ -45,13 +45,14 @@ void SearchTicketsInAuction::finishBidding()
 				if (ticketSample == ticketIter->get()) {
 
 					// 복사본 생성하여 판매자의 판매 완료된 목록에 추가
-					seller.getSoldTickets().push_back(std::make_shared<Ticket>(**ticketIter));
+					Ticket copiedTicket = **ticketIter;
+					seller.getSoldTickets().push_back(std::make_shared<Ticket>(copiedTicket));
 
 					//입찰가로 가격 갱신
-					ticketIter->operator->()->setPrice(price);
+					(*ticketIter)->setPrice(price);
 
 					// 판매자 -> 구매자로 티켓 소유권 양도
-					winner->getTickets().push_back(std::move(*ticketIter));
+					winner->getTickets().push_back(*ticketIter);
 
 					// 판매자의 판매중 목록에서 삭제
 					seller.getRegisteredTickets().erase(ticketIter);

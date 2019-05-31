@@ -177,6 +177,7 @@
     <ClInclude Include="RegisterTicketUI.h" />
     <ClInclude Include="SearchRegisteredTicket.h" />
     <ClInclude Include="SearchRegisteredTicketUI.h" />
+    <ClInclude Include="SearchReservableTicketManager.h" />
     <ClInclude Include="SearchReservableTicketUI.h" />
     <ClInclude Include="SearchTicketsInAuction.h" />
     <ClInclude Include="SearchTicketsInAuctionUI.h" />

@@ -14,8 +14,6 @@ class UserCollection
 	UserCollection();
 public:
 	static UserCollection& get();
-	void insert(const Seller& seller);
-	void insert(const Buyer& buyer);
 	void erase(const Info& info);
 	std::vector<Seller>& getSellers();
 	std::vector<Buyer>& getBuyers();
