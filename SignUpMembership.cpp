@@ -17,7 +17,7 @@ void SignUpMembership::signUp(const Info & info)
 {
 	if (info.getUserType() == "buyer") {
 		Buyer buyer(info);
-		UserCollection::get().getBuyers().push_back(std::move(buyer));
+		UserCollection::get().getBuyers().push_back(buyer);
 	}
 	else {
 		Seller seller(info);

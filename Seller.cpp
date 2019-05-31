@@ -7,9 +7,6 @@
 
 
 
-void Seller::printTickets() const
-{
-}
 
 const Info & Seller::getInfo() const
 {

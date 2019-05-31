@@ -23,12 +23,12 @@ std::string Ticket::getPosition() const
 	return seatNumber;
 }
 
-Timer & Ticket::getAuctionTimer()
+Timer& Ticket::getAuctionTimer()
 {
 	return auctionTimer;
 }
 
-Timer & Ticket::getLTATimer()
+Timer& Ticket::getLTATimer()
 {
 	return ltaTimer;
 }

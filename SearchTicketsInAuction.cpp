@@ -18,8 +18,6 @@ SearchTicketsInAuction* SearchTicketsInAuction::var = nullptr;
 void SearchTicketsInAuction::finishBidding()
 {
 	// 모든 경매 순회
-	//using Iter = std::pair<Ticket*, std::vector<std::pair<Buyer*, int>>>;
-	//auto end = std::partition(biddingList.begin(), biddingList.end(), [](Iter i) { return i.first->getAuctionTimer().isExpired(); });
 	for (auto iter = biddingList.begin(); iter != biddingList.end(); ++iter) {
 		auto[ticketSample, bidders] = *iter;
 
@@ -46,12 +44,11 @@ void SearchTicketsInAuction::finishBidding()
 				/*   판매자 및 판매할 티켓 확보   */
 				if (ticketSample == ticketIter->get()) {
 
-					// 판매자의 판매 완료된 목록에 추가
+					// 복사본 생성하여 판매자의 판매 완료된 목록에 추가
 					seller.getSoldTickets().push_back(std::make_shared<Ticket>(**ticketIter));
 
 					//입찰가로 가격 갱신
 					ticketIter->operator->()->setPrice(price);
-
 
 					// 판매자 -> 구매자로 티켓 소유권 양도
 					winner->getTickets().push_back(std::move(*ticketIter));
@@ -65,7 +62,6 @@ void SearchTicketsInAuction::finishBidding()
 			}
 		}
 	}
-	//biddingList.erase(biddingList.begin(), end);
 }
 SearchTicketsInAuction & SearchTicketsInAuction::get()
 {
@@ -87,7 +83,7 @@ void SearchTicketsInAuction::show(std::string home)
 
 	//출력
 	for (Ticket* t : currentView) {
-		time_t remaining = parseTime(t->getAuctionTimer().getDeadline()) - parseTime(Timer::getCurrentTime());
+		time_t remaining = Timer::parseTime(t->getAuctionTimer().getDeadline()) - Timer::parseTime(Timer::getCurrentTime());
 		const time_t hour = 3600;
 		char timeInStr[32];
 		sprintf(timeInStr, "%02d:%02d", remaining / hour, (remaining % hour) / 60);

@@ -15,17 +15,6 @@ UserCollection& UserCollection::get()
 	return *var;
 }
 
-#if 0
-void UserCollection::insert(const Seller & seller)
-{
-	sellers.push_back(seller);
-}
-
-void UserCollection::insert(const Buyer & buyer)
-{
-	buyers.push_back(buyer);
-}
-#endif
 void UserCollection::erase(const Info & info)
 {
 	if (info.getUserType() == "seller") {

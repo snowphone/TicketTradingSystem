@@ -11,7 +11,6 @@ class Seller
 	std::vector<std::shared_ptr<Ticket> > soldTickets;
 	
 public:
-	void printTickets() const;
 	const Info& getInfo() const;
 	bool empty() const;
 	std::vector<std::shared_ptr<Ticket>>& getRegisteredTickets();

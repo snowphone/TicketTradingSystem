@@ -33,7 +33,7 @@ bool Withdraw::isRemovable(const Info & info)
 {
 	if (info.getUserType() == "buyer")
 		return true;
-	/* Else: Seller */
+	/* 판매자의 경우, 등록된 티켓이 없어야 한다. */
 	auto user = UserCollection::get()[info];
 	return std::get<Seller*>(user)->empty();
 }

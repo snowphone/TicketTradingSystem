@@ -52,8 +52,13 @@ int main(int argc, char* argv[]) {
 				//로그인
 				string id, pw;
 				in >> id >> pw;
-				sessions.push_back(SignInUI::get().requestSignIn(id, pw));
-				currentUser = sessions.end() - 1;
+				const Info* ret = SignInUI::get().requestSignIn(id, pw);
+				if (ret) { //로그인 성공
+					sessions.push_back(ret);
+					currentUser = sessions.end() - 1;
+				}
+				else	// 로그인 실패
+					currentUser = sessions.end();
 			}
 			else {
 				//로그아웃
