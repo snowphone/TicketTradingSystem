@@ -1,3 +1,6 @@
+// Class: SearchRegisteredTicketUI
+// Description: 등록된 티켓 조회를 위한 boundary class이다.
+// Author: 김상엽
 #include "SearchRegisteredTicketUI.h"
 #include "SearchRegisteredTicket.h"
 

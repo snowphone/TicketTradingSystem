@@ -1,3 +1,6 @@
+//Class: SearchTicketsInAuction
+//Description: 경매에서 입찰 가능한 티켓을 조회 및 입찰하는 control 클래스이다.
+//Author: 김동하
 #include "SearchTicketsInAuction.h"
 #include "UserCollection.h"
 #include <ctime>
@@ -30,23 +33,24 @@ void SearchTicketsInAuction::finishBidding()
 		if (bidders.empty())
 			continue;
 
-		/*    입찰자 선정   */
+		//    입찰자 선정   
 
 		//최대 입찰 금액을 선정한 입찰자를 선정
 		auto[winner, price] = *std::max_element(bidders.begin(), bidders.end(),
 			[](std::pair<Buyer*, int>& l, std::pair<Buyer*, int>& r) {return l.second < r.second; });
 
-		/*    판매자 파악하기    */
+		//    판매자 파악하기    
 		auto& sellers = UserCollection::get().getSellers();
 		for (Seller& seller : sellers) {
 			std::vector<std::shared_ptr<Ticket>>& ticketList = seller.getRegisteredTickets();
 			for (auto ticketIter = ticketList.begin(); ticketIter != ticketList.end(); ++ticketIter) {
-				/*   판매자 및 판매할 티켓 확보   */
+				//   판매자 및 판매할 티켓 확보   
 				if (ticketSample == ticketIter->get()) {
 
 					// 복사본 생성하여 판매자의 판매 완료된 목록에 추가
 					Ticket copiedTicket = **ticketIter;
-					seller.getSoldTickets().push_back(std::make_shared<Ticket>(copiedTicket));
+					auto ticketPtr = std::make_shared<Ticket>(copiedTicket);
+					seller.getSoldTickets().push_back(ticketPtr);
 
 					//입찰가로 가격 갱신
 					(*ticketIter)->setPrice(price);
@@ -56,7 +60,6 @@ void SearchTicketsInAuction::finishBidding()
 
 					// 판매자의 판매중 목록에서 삭제
 					seller.getRegisteredTickets().erase(ticketIter);
-
 
 					return;
 				}
@@ -76,11 +79,8 @@ void SearchTicketsInAuction::show(std::string home)
 	std::cout << "4.3. 경매 중인 티켓 검색" << std::endl;
 	//경매중인 티켓 추출
 	currentView = UserCollection::get().getReservableTickets(home);
-	auto it = std::remove_if(currentView.begin(), currentView.end(), [](Ticket* t) {return !t->isUnderAuction(); });
-	currentView.erase(it, currentView.end());
 
-	//시간순 정렬
-	sort(currentView.begin(), currentView.end(), [](Ticket* l, Ticket* r) {return l->getTime() < r->getTime(); });
+	selectBiddableAndSort();
 
 	//출력
 	for (Ticket* t : currentView) {
@@ -98,20 +98,42 @@ void SearchTicketsInAuction::bid(const Info & bidderInfo, std::string time, std:
 	std::cout << "4.4. 경매 참여" << std::endl
 		<< "> " << price << std::endl;
 
-	//경매에 참가할 티켓을 찾는다
-	std::vector<Ticket*>::iterator it = find_if(currentView.begin(), currentView.end(),
-		[&](Ticket* t) {return t->getTime() == time && t->getAway() == away && t->getPosition() == position; });
 
-	Ticket* ticket = *it;
+
+	Ticket* ticket = *findTicket(time, away, position);
 
 	//입찰자 탐색
 	auto user = UserCollection::get()[bidderInfo];
 	Buyer* bidder = std::get<Buyer*>(user);
 
 
-	//입찰
-	std::vector<std::pair<Buyer*, int>>& list = biddingList[ticket];
-	list.push_back({ bidder, price });
+	bid(bidder, ticket, price);
+}
+
+void SearchTicketsInAuction::selectBiddableAndSort()
+{
+	//경매중 티켓 선정
+	auto it = std::partition(currentView.begin(), currentView.end(), [](Ticket* t) {return t->isUnderAuction(); });
+	currentView.erase(it, currentView.end());
+	//시간순 정렬
+	sort(currentView.begin(), currentView.end(), [](Ticket* l, Ticket* r) {return l->getTime() < r->getTime(); });
+}
+
+std::vector<Ticket*>::iterator SearchTicketsInAuction::findTicket(std::string time, std::string away, std::string position)
+{
+	//경매에 참가할 티켓을 찾는다
+	std::vector<Ticket*>::iterator it = find_if(currentView.begin(), currentView.end(),
+		[&](Ticket* t) {return t->getTime() == time && t->getAway() == away && t->getPosition() == position; });
+	return it;
+}
+
+void SearchTicketsInAuction::bid(Buyer * bidder, Ticket* ticket, int price)
+{
+	//입찰시 최소 금액은 판매 희망가격의 절반이다.
+	if (ticket->getPrice() / 2 <= price) {
+		std::vector<std::pair<Buyer*, int>>& list = biddingList[ticket];
+		list.push_back({ bidder, price });
+	}
 }
 
 SearchTicketsInAuction::~SearchTicketsInAuction()

@@ -1,3 +1,6 @@
+//Class: SearchTicketsInAuction
+//Description: 경매에서 입찰 가능한 티켓을 조회 및 입찰하는 boundary 클래스이다.
+//Author: 김동하
 #include "SearchTicketsInAuctionUI.h"
 #include "SearchTicketsInAuction.h"
 

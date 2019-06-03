@@ -1,3 +1,6 @@
+//Class: UserCollection
+//Description: 판매자 및 구매자들의 정보를 저장 및 관리하는 클래스이다.
+//Author: 김동하
 #include <algorithm>
 #include "UserCollection.h"
 
@@ -13,6 +16,16 @@ UserCollection& UserCollection::get()
 	if (!var)
 		var = new UserCollection();
 	return *var;
+}
+
+void UserCollection::insert(const Buyer & buyer)
+{
+	buyers.push_back(buyer);
+}
+
+void UserCollection::insert(const Seller & seller)
+{
+	sellers.push_back(seller);
 }
 
 void UserCollection::erase(const Info & info)

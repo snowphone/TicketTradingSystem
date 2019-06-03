@@ -1,3 +1,6 @@
+// Class: RegisterTicketManager
+// Description: 티켓 등록을 위한 control class이다.
+// Authror: 유새람
 #include "RegisterTicketManager.h"
 #include "UserCollection.h"
 
@@ -16,8 +19,7 @@ void RegisterTicketManager::deleteHistory()
 		// 판매가 완료된 1년이 지난 티켓 삭제
 		auto& soldTickets = seller.getSoldTickets();
 		auto it = std::remove_if(soldTickets.begin(), soldTickets.end(), [](std::shared_ptr<Ticket>& i) {return i->getHistoryTimer().isExpired(); });
-		//TODO
-		soldTickets.erase(it, soldTickets.end());	//여기서 터짐. 아마 복사하다가 문제가 생긴 모양
+		soldTickets.erase(it, soldTickets.end());	
 
 		// 판매중인 1년이 지난 티켓 삭제
 		auto& registeredTickets = seller.getRegisteredTickets();
@@ -46,7 +48,7 @@ void RegisterTicketManager::addNewTicket(const Info * currentUser, int price, st
 	Seller* seller = std::get<Seller*>(user);
 
 	//판매자 객체가 티켓을 소유
-	seller->getRegisteredTickets().push_back(std::move(ticket));
+	seller->getRegisteredTickets().push_back(ticket);
 }
 
 RegisterTicketManager::~RegisterTicketManager()

@@ -1,3 +1,6 @@
+//Class: SignIn
+//Description: 로그인 기능을 담당하는 control class이다.
+//Author: 김소연
 #include "SignIn.h"
 #include "UserCollection.h"
 #include <algorithm>
@@ -24,9 +27,8 @@ const Info * SignIn::putIdPw(std::string id, std::string pw)
 	auto info = UserCollection::get().find(id, pw);
 	if (info) {
 		std::cout << id << " " << pw << std::endl;
-		return info;
 	}
-	return nullptr;
+	return info;
 }
 
 SignIn::~SignIn()

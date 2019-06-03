@@ -1,3 +1,6 @@
+// Class: Buyer
+// Descripton: 구매자 객체를 표현하는 클래스이다. 
+// Author: 유새람
 #include "Buyer.h"
 
 

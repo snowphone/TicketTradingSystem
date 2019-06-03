@@ -1,3 +1,6 @@
+// Class: BookedTicketManagerUI
+// Description: 예약된 티켓 조회를 위한 Boundary class이다.
+// Author: 김소연
 #include "BookedTicketManagerUI.h"
 #include "BookedTicketManager.h"
 

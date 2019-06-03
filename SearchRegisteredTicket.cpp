@@ -1,3 +1,6 @@
+// Class: SearchRegisterTicket
+// Description: 등록한 티켓을 검색하기 위한 control class이다.
+// Author: 김상엽
 #include "SearchRegisteredTicket.h"
 #include "UserCollection.h"
 
@@ -24,21 +27,15 @@ void SearchRegisteredTicket::search(const Info & info)
 	Seller* seller = std::get<Seller*>(user);
 
 	// 판매중인 티켓 및 판매 완료된 티켓 추출
-	std::vector<Ticket*> ticketList;
+	std::vector<Ticket*> ticketList = seller->getTickets();
 
-	auto& registeredTickets = seller->getRegisteredTickets();
-	for (auto it = registeredTickets.begin(); it != registeredTickets.end(); ++it)
-		ticketList.push_back(it->get());
-
-	auto& soldTickets = seller->getSoldTickets();
-	for (auto it = soldTickets.begin(); it != soldTickets.end(); ++it)
-		ticketList.push_back(it->get());
 
 	//시간순 추출
 	sort(ticketList.begin(), ticketList.end(), [](Ticket* lhs, Ticket* rhs) { return lhs->getTime() < rhs->getTime(); });
 
 
 	//출력
+	auto& soldTickets = seller->getSoldTickets();
 	for (Ticket* t : ticketList) {
 		if (t->isUnderAuction())
 			std::cout << "> " << t->getPrice() << " " << t << " " << t->isLTA() << " "

@@ -1,3 +1,6 @@
+// Class: RegisterTicketUI
+// Description: 티켓 등록을 위한 boundary 클래스이다.
+// Author: 유새람
 #include "RegisterTicketUI.h"
 #include "RegisterTicketManager.h"
 

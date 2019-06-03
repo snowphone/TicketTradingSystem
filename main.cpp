@@ -1,3 +1,9 @@
+// Class: main
+// Description: 메인함수이며, 프로그램 입력을 파싱하는 역할을 수행한다.
+// 소프트웨어 공학 과제 3
+// 티켓 매매 시스템 구현
+// 개발환경: Visual studio 2017, C++17
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -15,14 +21,13 @@
 #include "BookedTicketManagerUI.h"
 
 #include "Timer.h"
-#include "UserCollection.h"
 
 using namespace std;
 
 
 int main(int argc, char* argv[]) {
 #ifdef  _MSC_VER
-	system("chcp 65001");	//utf-8로 콘솔에 출력을 강제함
+	system("chcp 65001");	//utf-8로 콘솔에 출력을 강제한다.
 #endif
 	ifstream in("input.txt");
 #ifndef _DEBUG

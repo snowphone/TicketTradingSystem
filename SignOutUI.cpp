@@ -1,3 +1,6 @@
+//Class: SignOut
+//Description: 로그아웃을 담당하는 boundary class이다.
+//Author: 김상엽
 #include "SignOutUI.h"
 #include "SignOut.h"
 

@@ -1,3 +1,6 @@
+//Class: SignOut
+//Description: 로그아웃을 담당하는 control class이다.
+//Author: 김상엽
 #include "SignOut.h"
 #include <iostream>
 

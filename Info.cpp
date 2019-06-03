@@ -1,3 +1,6 @@
+// Class: Info
+// Description: 구매자 및 판매자가 공통적으로 가지는 회원 정보를 모은 클래스이다.
+// Author: 김소연
 #include "Info.h"
 #include <tuple>
 

@@ -1,7 +1,8 @@
+// Class: BookedTicketManager
+// Description: 예약된 티켓 정보 출력을 위한 control 클래스이다.
+// Author: 김소연
 #include "BookedTicketManager.h"
 #include "UserCollection.h"
-
-
 
 
 BookedTicketManager::BookedTicketManager()

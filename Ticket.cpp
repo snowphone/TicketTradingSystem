@@ -1,3 +1,6 @@
+//Class: Ticket
+//Description: 티켓 정보를 표현하는 클래스이다.
+//Author: 김동하
 #include "Ticket.h"
 #include "SearchTicketsInAuction.h"
 #include "RegisterTicketManager.h"

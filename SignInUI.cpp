@@ -1,3 +1,6 @@
+//Class: SignInUI
+//Description: 로그인 기능을 담당하는 boundary 클래스이다.
+//Author: 김소연
 #include "SignInUI.h"
 #include "SignIn.h"
 
