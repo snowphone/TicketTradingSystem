@@ -50,6 +50,11 @@ Timer::~Timer()
 		list.erase(it);
 }
 
+// Function: void update()
+// Description: 현재시각이 재설정되었을 때, 이에 따른 타이머의 만료 여부에 따라 미리 설정된 callback함수를 수행한다.
+// Parameters: void
+// Return Value: void
+// Created 2019/05/30 18:10 by 문준오
 void Timer::update()
 {
 	// 현재 시각을 기준으로 만료된 타이머를 찾는다.

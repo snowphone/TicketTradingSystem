@@ -12,6 +12,12 @@ RegisterTicketManager::RegisterTicketManager()
 
 
 RegisterTicketManager* RegisterTicketManager::var = nullptr;
+
+// Function: deleteHistory()
+// Parameters: void
+// Return value: void
+//
+// Created: 2019/05/30/17:27 by 문준오
 void RegisterTicketManager::deleteHistory()
 {
 	std::vector<Seller>& sellers = UserCollection::get().getSellers();

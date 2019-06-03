@@ -18,6 +18,11 @@ std::vector<Ticket*> SearchTicketsInAuction::currentView;
 
 SearchTicketsInAuction* SearchTicketsInAuction::var = nullptr;
 
+// Function: void finishBidding()
+// Description: auctionTimer가 만료되었을 때, list를 순회하면서 경매가 끝난 티켓들에 대해 입찰자를 선정한다.
+// Parameters: void
+// Return value: void
+// Created: 2019/05/30 22:57 by 문준오
 void SearchTicketsInAuction::finishBidding()
 {
 	// 모든 경매 순회
