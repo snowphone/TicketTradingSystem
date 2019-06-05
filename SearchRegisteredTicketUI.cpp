@@ -45,7 +45,7 @@ SearchRegisteredTicketUI & SearchRegisteredTicketUI::get()
 // Description: SearchRegisterTicket 클래스의 search 함수를 호출해준다.
 // Author: 김상엽
 // Created: 2019/05/31
-// Parameters:
+// Parameters: const Info& info(검색할 티켓의 정보)
 // Return Value:
 
 // Revisions:
