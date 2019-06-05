@@ -1,6 +1,19 @@
 // Class: SearchRegisterTicket
 // Description: 등록한 티켓을 검색하기 위한 control class이다.
 // Author: 김상엽
+// Created: 2019/05/31
+// Mail: natsuko0012@gmail.com
+
+// Revisions:
+// 		1.	When & Who: 2019/05/31 by 김상엽
+// 				What: create file
+//
+// 		2.	When & Who: 2019/05/31 by 김상엽
+// 				What: complete basic logic
+//
+// 		3.	When & Who: 2019/06/01 by 김상엽
+// 				What: add Korean comment
+
 #include "SearchRegisteredTicket.h"
 #include "UserCollection.h"
 
