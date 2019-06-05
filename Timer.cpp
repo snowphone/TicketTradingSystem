@@ -2,6 +2,8 @@
 //Description: 시간과 관련된 기능을 담당하는 클래스이다.
 //Author: 김상엽
 #include "Timer.h"
+#include "RegisterTicketManager.h"
+#include "SearchTicketsInAuction.h"
 #include <ctime>
 
 
@@ -57,15 +59,12 @@ Timer::~Timer()
 // Created 2019/05/30 18:10 by 문준오
 void Timer::update()
 {
-	// 현재 시각을 기준으로 만료된 타이머를 찾는다.
-	auto end = std::partition(list.begin(), list.end(), [](Timer* t) { return t->isExpired(); });
-	for (auto it = list.begin(); it != end; ++it) {
-		/* 미리 설정한 callback을 호출한다. */
-		if ((*it)->callback) {
-			(*it)->callback();
-		}
-	}
-	list.erase(list.begin(), end);
+	//LTA 티켓을 처리한다.
+	RegisterTicketManager::switchToLTA();
+	//경매가 끝난 티켓들을 처리한다.
+	SearchTicketsInAuction::finishBidding();
+	//등록한지 1년이 지난 티켓들을 삭제한다.
+	RegisterTicketManager::deleteHistory();
 }
 
 std::string Timer::makeTime(time_t t) {
