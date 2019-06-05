@@ -1,6 +1,16 @@
 //Class: Withdraw
 //Description: 회원 탈퇴기능을 수행하는 control class이다.
 //Author: 김상엽
+// Created: 2019/06/02
+// Mail: natsuko0012@gmail.com
+
+// Revisions:
+// 		1.	When & Who: 2019/06/02 by 김상엽
+// 				What: create file
+//
+// 		2.	When & Who: 2019/06/02 by 김상엽
+// 				What: complete basic logic & add some comment
+
 #include "Withdraw.h"
 #include "UserCollection.h"
 #include "Ticket.h"
