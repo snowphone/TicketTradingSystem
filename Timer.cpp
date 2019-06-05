@@ -1,6 +1,23 @@
 //Class: Timer
 //Description: 시간과 관련된 기능을 담당하는 클래스이다.
 //Author: 김상엽
+// Created: 2019/06/03
+// Mail: natsuko0012@gmail.com
+
+// Revisions:
+// 		1.	When & Who: 2019/06/03 by 김상엽
+// 				What: create file
+//
+// 		2.	When & Who: 2019/06/03 by 김상엽
+// 				What: modify ambiguous var name and add comment
+//
+// 		3.	When & Who: 2019/06/03 by 김상엽
+// 				What: temp modification
+//
+// 		4.	When & Who: 2019/06/03 by 김상엽
+// 				What: complete
+
+
 #include "Timer.h"
 #include "RegisterTicketManager.h"
 #include "SearchTicketsInAuction.h"
