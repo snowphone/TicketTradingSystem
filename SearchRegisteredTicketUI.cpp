@@ -17,7 +17,16 @@
 #include "SearchRegisteredTicketUI.h"
 #include "SearchRegisteredTicket.h"
 
+// Function: SearchRegisteredTicketUI::SearchRegisteredTicketUI()
+// Description: SearchRegisterTicketUI 클래스의 생성자이다.
+// Author: 김상엽
+// Created: 2019/05/31
+// Parameters:
+// Return Value: SearchRegisterTicketUI 클래스의 인스턴스
 
+// Revisions:
+// 		1.	When & Who: 2019/05/31 by 김상엽
+// 				What: create function
 
 SearchRegisteredTicketUI::SearchRegisteredTicketUI()
 {
@@ -32,11 +41,34 @@ SearchRegisteredTicketUI & SearchRegisteredTicketUI::get()
 	return *var;
 }
 
+// Function: void SearchRegisteredTicketUI::search(const Info& info)
+// Description: SearchRegisterTicket 클래스의 search 함수를 호출해준다.
+// Author: 김상엽
+// Created: 2019/05/31
+// Parameters:
+// Return Value:
+
+// Revisions:
+// 		1.	When & Who: 2019/05/31 by 김상엽
+// 				What: create function
+// 		2.	When & Who: 2019/06/01 by 김상엽
+// 				What: modify miss on var name
+
 void SearchRegisteredTicketUI::search(const Info& info)
 {
-
 	SearchRegisteredTicket::get().search(info);
 }
+
+// Function: SearchRegisteredTicketUI::~SearchRegisteredTicketUI()
+// Description: SearchRegisterTicketUI 클래스의 소멸자이다.
+// Author: 김상엽
+// Created: 2019/05/31
+// Parameters:
+// Return Value:
+
+// Revisions:
+// 		1.	When & Who: 2019/05/31 by 김상엽
+// 				What: create function
 
 SearchRegisteredTicketUI::~SearchRegisteredTicketUI()
 {
