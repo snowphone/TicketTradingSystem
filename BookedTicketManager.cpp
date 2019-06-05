@@ -1,6 +1,16 @@
 // Class: BookedTicketManager
 // Description: 예약된 티켓 정보 출력을 위한 control 클래스이다.
 // Author: 김소연
+// Created: 2019/06/01
+// Mail: 96syk@naver.com
+
+// Revisions:
+// 		1.	When & Who: 2019/06/01 by 김소연
+// 				What: create file
+//
+// 		2.	When & Who: 2019/06/04 by 김소연
+// 				What: modify some errors
+
 #include "BookedTicketManager.h"
 #include "UserCollection.h"
 
