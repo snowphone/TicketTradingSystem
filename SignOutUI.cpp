@@ -24,7 +24,7 @@
 // Function: SignOutUI::SignOutUI()
 // Description: SignOutUI 클래스의 생성자이다.
 // Author: 김상엽
-// Created: 2019/06/03
+// Created: 2019/06/01
 // Parameters:
 // Return Value:
 
@@ -39,7 +39,7 @@ SignOutUI::SignOutUI()
 // Function: void SignOutUI::requestSignOut(const Info & info)
 // Description: SignOut 클래스의 SignOut을 호출하는 함수이다.
 // Author: 김상엽
-// Created: 2019/06/03
+// Created: 2019/06/01
 // Parameters: const Info & info(로그아웃할 계정의 정보)
 // Return Value:
 
