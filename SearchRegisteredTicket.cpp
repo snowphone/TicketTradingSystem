@@ -17,7 +17,16 @@
 #include "SearchRegisteredTicket.h"
 #include "UserCollection.h"
 
+// Function: SearchRegisteredTicket::SearchRegisteredTicket()
+// Description: SearchRegisterTicket 클래스의 생성자이다.
+// Author: 김상엽
+// Created: 2019/05/31
+// Parameters:
+// Return Value: SearchRegisterTicket 클래스의 인스턴스
 
+// Revisions:
+// 		1.	When & Who: 2019/05/31 by 김상엽
+// 				What: create function
 
 SearchRegisteredTicket::SearchRegisteredTicket()
 {
@@ -31,6 +40,21 @@ SearchRegisteredTicket & SearchRegisteredTicket::get()
 		var = new SearchRegisteredTicket();
 	return *var;
 }
+
+// Function: void SearchRegisteredTicket::search(const Info & info)
+// Description: 등록된 티켓을 조회하여 출력하는 함수이다.
+// Author: 김상엽
+// Created: 2019/05/31
+// Parameters: const Info & info(검색할 티켓에 대한 정보)
+// Return Value:
+
+// Revisions:
+// 		1.	When & Who: 2019/05/31 by 김상엽
+// 				What: create function
+// 		2.	When & Who: 2019/05/31 by 김상엽
+// 				What: modify print format
+// 		3.	When & Who: 2019/05/31 by 김상엽
+// 				What: complete function
 
 void SearchRegisteredTicket::search(const Info & info)
 {
@@ -59,6 +83,17 @@ void SearchRegisteredTicket::search(const Info & info)
 	}
 
 }
+
+// Function: SearchRegisteredTicket::~SearchRegisteredTicket()
+// Description: SearchRegisterTicket 클래스의 소멸자이다.
+// Author: 김상엽
+// Created: 2019/05/31
+// Parameters:
+// Return Value:
+
+// Revisions:
+// 		1.	When & Who: 2019/05/31 by 김상엽
+// 				What: create function
 
 SearchRegisteredTicket::~SearchRegisteredTicket()
 {
