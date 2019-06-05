@@ -79,7 +79,7 @@ Withdraw::~Withdraw()
 // Description: 회원 탈퇴가 가능한지 확인하는 함수이다.
 // Author: 김상엽
 // Created: 2019/06/02
-// Parameters: const Info & info
+// Parameters: const Info & info(탈퇴할 회원의 정보)
 // Return Value: std::get<Seller*>(user)->empty() (boolean type의 탈퇴 가능 여부)
 
 // Revisions:
