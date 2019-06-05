@@ -15,7 +15,7 @@ class Ticket
 	int price;
 	bool useLTA;
 	Timer ltaTimer;
-	Timer auctionTimer;
+	Timer sellableTimer;
 	Timer historyTimer;
 public:
 	//Description: 티켓간 동일 여부를 판단하는 보조함수이다.
@@ -33,7 +33,7 @@ public:
 	//Description: seatNumber 변수를 반환하는 getter이다.
 	std::string getPosition() const;
 	//Description: auctionTimer 변수를 반환하는 getter이다.
-	Timer& getAuctionTimer();
+	Timer& getSellableTimer();
 	//Description: historyTimer 변수를 반환하는 getter이다.
 	Timer& getHistoryTimer();
 	//Description: ltaTimer 변수를 반환하는 getter이다.

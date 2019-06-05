@@ -8,14 +8,11 @@
 
 
 
-std::vector<Timer*> Timer::list;
 
-void Timer::setTimer(std::string time, void(*callback)())
+void Timer::setTimer(std::string time)
 {
-	//데드라인 설정 및 데드라인시 수행할 콜백함수 설정
+	//데드라인 설정 
 	deadline = time;
-	this->callback = callback;
-	this->list.push_back(this);
 }
 
 std::string Timer::currentTime;
@@ -47,9 +44,6 @@ std::string Timer::getDeadline() const
 
 Timer::~Timer()
 {
-	auto it = std::find(list.begin(), list.end(), this);
-	if(it != list.end())
-		list.erase(it);
 }
 
 // Function: void update()

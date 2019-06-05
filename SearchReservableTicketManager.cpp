@@ -21,7 +21,7 @@ void SearchReservableTicketManager::selectSellingTickets()
 
 	// 팔리지 못한 티켓도 배제한다. 
 	// 이는 경매에 유찰된 경우나 미판매 상태로 경기가 시작한 경우를 의미한다. 
-	it = std::remove_if(watchingTickets.begin(), watchingTickets.end(), [](Ticket* i) { return i->getAuctionTimer().isExpired(); });
+	it = std::remove_if(watchingTickets.begin(), watchingTickets.end(), [](Ticket* i) { return i->getSellableTimer().isExpired(); });
 	watchingTickets.erase(it, watchingTickets.end());
 }
 const Ticket * SearchReservableTicketManager::findSample(std::string time, std::string away, std::string position)

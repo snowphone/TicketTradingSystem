@@ -26,9 +26,9 @@ std::string Ticket::getPosition() const
 	return seatNumber;
 }
 
-Timer& Ticket::getAuctionTimer()
+Timer& Ticket::getSellableTimer()
 {
-	return auctionTimer;
+	return sellableTimer;
 }
 
 Timer & Ticket::getHistoryTimer()
@@ -44,7 +44,7 @@ Timer& Ticket::getLTATimer()
 bool Ticket::isUnderAuction() const
 {
 	//LTA 옵션이 선택되었고, 경기시작 24-6시간 전 사이인 경우 경매중이다.
-	return useLTA && ltaTimer.isExpired() && !auctionTimer.isExpired();
+	return useLTA && ltaTimer.isExpired() && !sellableTimer.isExpired();
 }
 
 int Ticket::getPrice() const
@@ -62,19 +62,19 @@ Ticket::Ticket(int price, std::string time, std::string home, std::string away, 
 {
 	const time_t hour = 3600;
 	const time_t year = hour * 24 * 365;
-	historyTimer.setTimer(Timer::makeTime(Timer::parseTime(time) + year), RegisterTicketManager::deleteHistory);
+	historyTimer.setTimer(Timer::makeTime(Timer::parseTime(time) + year));
 
 	if (useLTA) {
 		time_t tt = Timer::parseTime(time);
 		tt -= 24 * hour;
-		this->ltaTimer.setTimer(Timer::makeTime(tt), nullptr);
+		this->ltaTimer.setTimer(Timer::makeTime(tt));
 
 		tt = Timer::parseTime(time);
 		tt -= 6 * hour;
-		auctionTimer.setTimer(Timer::makeTime(tt), SearchTicketsInAuction::finishBidding);
+		sellableTimer.setTimer(Timer::makeTime(tt));
 	} else {
 		// 일반 티켓은 특별한 언급이 없으므로 경기 시작시각까지 판매 가능하도록 한다. 
-		auctionTimer.setTimer(time, nullptr);
+		sellableTimer.setTimer(time);
 	}
 }
 
