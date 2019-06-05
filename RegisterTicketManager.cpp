@@ -46,7 +46,7 @@ void RegisterTicketManager::deleteHistory()
 // Author: 유새람
 // Revisions:
 //		1. When & Who: 2019/06/02 by 유새람
-//				What: 존재하지 않으면 새롭게 생성/존재하면 instance return
+//				What: 한번만 constructor 호출하도록 함
 RegisterTicketManager & RegisterTicketManager::get()
 {
 	if (!var)
@@ -56,7 +56,7 @@ RegisterTicketManager & RegisterTicketManager::get()
 
 // Function: void addNewTicket(const Info * currentUser, int price, std::string time, std::string home, std::string away, std::string position, bool useLTA);
 // Description: 판매자가 등록한 티켓을 새로 추가하는 메소드
-// Parameters:	info * currentUser- 등록하려는 Seller
+// Parameters:	const Info * currentUser- 등록하려는 Seller
 //				int price- 희망 판매가격
 //				string time, home, away, position- 경기정보(경기 날짜, 홈팀, 어웨이팀, 좌석 위치)
 //				bool useLTA- limited-time auction 사용 여부
