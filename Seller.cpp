@@ -1,6 +1,23 @@
 //Class: Seller
 //Description: 판매자 정보를 표현하는 클래스이다.
 //Author: 김상엽
+
+// Revisions:
+// 		1.	When & Who: 2019/06/03 by 김상엽
+// 				What: create file
+//
+// 		2.	When & Who: 2019/06/03 by 김상엽
+// 				What: add some include
+//
+// 		3.	When & Who: 2019/06/03 by 김상엽
+// 				What: remove redundant include
+//
+// 		4.	When & Who: 2019/06/03 by 김상엽
+// 				What: add debugging code
+//
+// 		5.	When & Who: 2019/06/03 by 김상엽
+// 				What: complete Seller.cpp
+
 #include "Seller.h"
 #include <iostream>
 #include <iterator>
@@ -21,7 +38,7 @@ bool Seller::empty() const
 	return registeredTickets.empty();
 }
 
-std::vector<std::shared_ptr<Ticket>> & Seller::getRegisteredTickets() 
+std::vector<std::shared_ptr<Ticket>> & Seller::getRegisteredTickets()
 {
 	return registeredTickets;
 }
@@ -32,7 +49,7 @@ std::vector<std::shared_ptr<Ticket>> & Seller::getSoldTickets()
 }
 
 std::vector<Ticket*> Seller::getTickets()
-{	
+{
 	std::vector<Ticket*> ticketList;
 
 	auto& registeredTickets = getRegisteredTickets();
