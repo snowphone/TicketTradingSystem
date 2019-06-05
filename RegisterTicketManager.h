@@ -18,5 +18,7 @@ public:
 	void addNewTicket(const Info * currentUser, int price, std::string time, std::string home, std::string away, std::string position, bool useLTA);
 	//Description: 소멸자이다.
 	~RegisterTicketManager();
+	//Description: Switch to LTA
+	static void switchToLTA();
 };
 
