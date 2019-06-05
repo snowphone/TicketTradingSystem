@@ -7,7 +7,7 @@
 // 				What: create file
 //
 // 		2.	When & Who: 2019/06/02 by 유새람
-// 				What: complete logic
+// 				What: complete basic logic
 //
 // 		3.	When & Who: 2019/06/04 by 유새람
 // 				What: add comment
@@ -33,7 +33,7 @@ bool Buyer::empty() const
 
 bool Buyer::operator==(const Info& i) const
 {
-	return this->info == i;	//
+	return this->info == i;	//info 인스턴스 중 buyer를 찾기 위한 보조함수
 }
 
 Buyer::Buyer(const Info & info) : info(info)
