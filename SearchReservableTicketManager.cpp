@@ -15,15 +15,22 @@ SearchReservableTicketManager::SearchReservableTicketManager()
 SearchReservableTicketManager* SearchReservableTicketManager::var = nullptr;
 void SearchReservableTicketManager::selectSellingTickets()
 {
-	auto it = std::remove_if(watchingTickets.begin(), watchingTickets.end(), [](Ticket* i) {return i->isUnderAuction(); });
+	// 경매중인 티켓을 배제한다. 
+	auto it = std::remove_if(watchingTickets.begin(), watchingTickets.end(), [](Ticket* i) { return i->isUnderAuction(); });
+	watchingTickets.erase(it, watchingTickets.end());
+
+	// 팔리지 못한 티켓도 배제한다. 
+	// 이는 경매에 유찰된 경우나 미판매 상태로 경기가 시작한 경우를 의미한다. 
+	it = std::remove_if(watchingTickets.begin(), watchingTickets.end(), [](Ticket* i) { return i->getAuctionTimer().isExpired(); });
 	watchingTickets.erase(it, watchingTickets.end());
 }
 const Ticket * SearchReservableTicketManager::findSample(std::string time, std::string away, std::string position)
 {
-	const Ticket* ticketSample = *find_if(watchingTickets.begin(), watchingTickets.end(), [&](Ticket* t) {
+	auto it = find_if(watchingTickets.begin(), watchingTickets.end(), [&](Ticket* t) {
 		return t->getTime() == time && t->getAway() == away && t->getPosition() == position;
 	});
-	return ticketSample;
+
+	return it != watchingTickets.end() ? *it : nullptr;
 }
 void SearchReservableTicketManager::deal(Seller* seller, Buyer* buyer, std::vector<std::shared_ptr<Ticket>>::iterator it)
 {
