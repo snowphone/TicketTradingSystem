@@ -49,6 +49,8 @@ SignUpMembershipUI& SignUpMembershipUI::get()
 // Function: void requestSignUP(const Info& info)
 // Description: 회원가입을 담당하는 boundary class
 // Author: 김소연
+// Parameter: const Info & info -회원정보
+// Return value: void
 // Revisions:
 //		1. When & Who: 2019/06/01 by 김소연
 void SignUpMembershipUI::requestSignUP(const Info & info)
