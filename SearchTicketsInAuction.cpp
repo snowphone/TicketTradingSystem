@@ -14,6 +14,10 @@
 
 
 
+// Function: SearchTicketsInAuction()
+// Description: 생성자
+// Created: 2019/05/29
+// Author: 김동하
 SearchTicketsInAuction::SearchTicketsInAuction()
 {
 }
