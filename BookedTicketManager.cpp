@@ -48,6 +48,7 @@ BookedTicketManager & BookedTicketManager::get()
 // Function: void print(const Info& buyerInfo)
 // Description: 예약된 티켓 출력담당
 // Author: 김소연
+// Parameters: const Info & buyerInfo - 구매자의정보
 // Revisions:
 //		1. When & Who: 2019/06/01 by 김소연
 //				What: 예약된 티켓의 출력을 담당
