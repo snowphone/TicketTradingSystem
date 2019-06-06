@@ -53,6 +53,7 @@ SignIn & SignIn::get()
 
 // Function: const Info* requestSignIn(std::string id, std::stringpw);
 // Description: 로그인을 담당하는 boundary method
+// Parameter: std::string id-회원 id, std::stringpw-회원 pw
 // Author: 김소연
 // Revisions:
 //		1. When & Who: 2019/06/01 by 김소연
