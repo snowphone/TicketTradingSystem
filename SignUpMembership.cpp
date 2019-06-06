@@ -40,6 +40,8 @@ SignUpMembership&  SignUpMembership::get()
 // Function: void signUp(const Info& info)
 // Description: 회원가입을 수행하는 control method
 // Author: 김소연
+// Parameter: const Info & info -회원정보
+// Return value: void
 // Revisions:
 //		1. When & Who: 2019/06/01 by 김소연
 void SignUpMembership::signUp(const Info & info)
