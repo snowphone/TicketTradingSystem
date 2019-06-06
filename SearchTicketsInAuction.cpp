@@ -1,6 +1,12 @@
-//Class: SearchTicketsInAuction
-//Description: 경매에서 입찰 가능한 티켓을 조회 및 입찰하는 control 클래스이다.
-//Author: 김동하
+// Class: SearchTicketsInAuction
+// Description: 경매에서 입찰 가능한 티켓을 조회 및 입찰하는 control 클래스이다.
+// Created: 2019/05/29
+// Author: 김동하
+// mail: kdongha1995@gmail.com
+//
+// Revisions:
+//	1. When & Who : 2019/06/01 19:07 by 김동하
+//	    What : added comments
 #include "SearchTicketsInAuction.h"
 #include "UserCollection.h"
 #include <ctime>
@@ -31,7 +37,7 @@ void SearchTicketsInAuction::finishBidding()
 
 		//경매가 종료된 티켓 -> 경매중인 리스트에서 제외
 		iter = biddingList.erase(iter);
-		if(iter != biddingList.begin())
+		if (iter != biddingList.begin())
 			--iter;
 
 		//유찰 
@@ -72,6 +78,10 @@ void SearchTicketsInAuction::finishBidding()
 		}
 	}
 }
+// Function: SearchTicketsInAuction & SearchTicketsInAuction::get()
+// Description: Singleton을 위한 instance caller 함수
+// Created: 2019/05/29
+// Author: 김동하
 SearchTicketsInAuction & SearchTicketsInAuction::get()
 {
 	if (!var)
@@ -79,6 +89,12 @@ SearchTicketsInAuction & SearchTicketsInAuction::get()
 	return *var;
 }
 
+// Function: SearchTicketsInAuction::show(std::string home)
+// Description: 선택한 home팀이 경기하는 모든 경매중인 티켓을 조회하는 control method이다.
+// Parameters: std::string home - selected home team
+// Return Value: void
+// Created: 2019/05/29
+// Author: 김동하
 void SearchTicketsInAuction::show(std::string home)
 {
 	std::cout << "4.3. 경매 중인 티켓 검색" << std::endl;
@@ -89,7 +105,7 @@ void SearchTicketsInAuction::show(std::string home)
 
 	//출력
 	for (Ticket* t : currentView) {
-		time_t remaining = Timer::parseTime(t->getSellableTimer().getDeadline()) - Timer::parseTime(Timer::getCurrentTime());
+		time_t remaining = Timer::parseTime(t->getAuctionTimer().getDeadline()) - Timer::parseTime(Timer::getCurrentTime());
 		const time_t hour = 3600;
 		char timeInStr[32];
 		sprintf(timeInStr, "%02d:%02d", remaining / hour, (remaining % hour) / 60);
@@ -97,9 +113,19 @@ void SearchTicketsInAuction::show(std::string home)
 	}
 }
 
+// Function: SearchTicketsInAuction::bid(const Info & bidderInfo, std::string time, std::string away, std::string position, int price)
+// Description: 원하는 티켓을 입찰하는 control method이다.
+// Parameters:	const Info & bidderInfo - bidder
+// 		std::string time - game time
+// 		std::string away - away team
+//		std::string position - seating location
+// 		int price - bid amount
+// Return Value: void
+// Created: 2019/05/29
+// Author: 김동하
 void SearchTicketsInAuction::bid(const Info & bidderInfo, std::string time, std::string away, std::string position, int price)
 {
-	
+
 	std::cout << "4.4. 경매 참여" << std::endl
 		<< "> " << price << std::endl;
 
@@ -115,6 +141,12 @@ void SearchTicketsInAuction::bid(const Info & bidderInfo, std::string time, std:
 	bid(bidder, ticket, price);
 }
 
+// Function: SearchTicketsInAuction::selectBiddableAndSort()
+// Description: currentView로 부터 LTA중인 티켓만을 선별하여 시간순으로 정렬하는 함수
+// Parameters: void
+// Return Value: void
+// Created: 2019/05/29
+// Author: 김동하
 void SearchTicketsInAuction::selectBiddableAndSort()
 {
 	//경매중 티켓 선정
@@ -124,6 +156,14 @@ void SearchTicketsInAuction::selectBiddableAndSort()
 	sort(currentView.begin(), currentView.end(), [](Ticket* l, Ticket* r) {return l->getTime() < r->getTime(); });
 }
 
+// Function: SearchTicketsInAuction::findTicket(std::string time, std::string away, std::string position)
+// Description: 경매에 참가할 티켓을 찾는 함수
+// Parameters:	std::string time - game time
+// 		std::string away - away team
+//		std::string position - seating location
+// Return Value: std::vector<Ticket*>::iterator
+// Created: 2019/05/29
+// Author: 김동하
 std::vector<Ticket*>::iterator SearchTicketsInAuction::findTicket(std::string time, std::string away, std::string position)
 {
 	//경매에 참가할 티켓을 찾는다
@@ -132,6 +172,14 @@ std::vector<Ticket*>::iterator SearchTicketsInAuction::findTicket(std::string ti
 	return it;
 }
 
+// Function: SearchTicketsInAuction::bid(Buyer * bidder, Ticket* ticket, int price)
+// Description: 원하는 티켓을 입찰하는 보조함수
+// Parameters:	Buyer * bidder - bidder
+// 		Ticket* ticket - bid ticket
+//		int price - bid amount
+// Return Value: void
+// Created: 2019/05/29
+// Author: 김동하
 void SearchTicketsInAuction::bid(Buyer * bidder, Ticket* ticket, int price)
 {
 	//입찰시 최소 금액은 판매 희망가격의 절반이다.
@@ -141,6 +189,13 @@ void SearchTicketsInAuction::bid(Buyer * bidder, Ticket* ticket, int price)
 	}
 }
 
+
+// Function: ~SearchTicketsInAuction()
+// Description: 소멸자
+// Parameters: void
+// Return Value: void
+// Created: 2019/05/29
+// Author: 김동하
 SearchTicketsInAuction::~SearchTicketsInAuction()
 {
 }
