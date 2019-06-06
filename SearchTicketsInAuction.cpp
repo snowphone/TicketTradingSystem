@@ -105,7 +105,7 @@ void SearchTicketsInAuction::show(std::string home)
 
 	//출력
 	for (Ticket* t : currentView) {
-		time_t remaining = Timer::parseTime(t->getAuctionTimer().getDeadline()) - Timer::parseTime(Timer::getCurrentTime());
+		time_t remaining = Timer::parseTime(t->getSellableTimer().getDeadline()) - Timer::parseTime(Timer::getCurrentTime());
 		const time_t hour = 3600;
 		char timeInStr[32];
 		sprintf(timeInStr, "%02d:%02d", remaining / hour, (remaining % hour) / 60);
