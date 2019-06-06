@@ -15,13 +15,32 @@
 #include <algorithm>
 
 
-
+// Function: SignIn()
+// Description: Singleton을 위한 private 생성자
+// Author: 김소연
+// Revisions:
+//		1. When & Who: 2019/06/01 by 김소연
 SignIn::SignIn()
 {
 }
 
 
+
+// Function: static SignInUI* var;
+// Description: Singleton을 적용한 private instance 변수
+// Author: 김소연
+// Revisions:
+//		1. When & Who: 2019/06/01 by 김소연
 SignIn* SignIn::var = nullptr;
+
+
+
+
+// Function: static SignInUI& get();
+// Description: Singleton을 위한 instance caller
+// Author: 김소연
+// Revisions:
+//		1. When & Who: 2019/06/01 by 김소연
 SignIn & SignIn::get()
 {
 	if (!var)
@@ -29,6 +48,14 @@ SignIn & SignIn::get()
 	return *var; //instance caller
 }
 
+
+
+
+// Function: const Info* requestSignIn(std::string id, std::stringpw);
+// Description: 로그인을 담당하는 boundary method
+// Author: 김소연
+// Revisions:
+//		1. When & Who: 2019/06/01 by 김소연
 const Info * SignIn::putIdPw(std::string id, std::string pw)
 {
 	std::cout << "2.1. 로그인" << std::endl
@@ -40,6 +67,15 @@ const Info * SignIn::putIdPw(std::string id, std::string pw)
 	return info; //로그인 
 }
 
+
+
+
+
+// Function: ~SignInUI()
+// Description: 소멸자
+// Author: 김소연
+// Revisions:
+//		1. When & Who: 2019/06/01 by 김소연
 SignIn::~SignIn()
 {
 }
