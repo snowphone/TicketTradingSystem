@@ -18,6 +18,8 @@
 // Function: bool checkID(std::string id, std::string pw) const
 // Description: 로그인을 위해 id 및 pw를 입력하였을 때 이와 일치하는지 여부를 반환하는 함수
 // Author: 김소연
+// Parameters: std::string id-회원의 id, std::string pw-회원의 pw
+// Return value: bool
 // Revisions:
 //		1. When & Who: 2019/06/01 by 김소연
 bool Info::checkID(std::string id, std::string pw) const
@@ -28,6 +30,7 @@ bool Info::checkID(std::string id, std::string pw) const
 // Function: Info(std::string id, std::string pw, std::string name, std::string ssn, std::string userType)
 // Description: 회원가입시 필요한 정보로 Info 객체를 만드는 생성자
 // Author: 김소연
+// Parameter: std::string id-회원id, std::string pw-회원pw, std::string name-회원이름, std::string ssn-회원ssn, std::string userType-회원 user type
 // Revisions:
 //		1. When & Who: 2019/06/01 by 김소연
 
@@ -85,6 +88,7 @@ Info::~Info()
 // Function: std::ostream & operator<<(std::ostream & os, const Info & info)
 // Description: 출력을 위한 보조함수
 // Author: 김소연
+// Parameter: std::ostream & os-output, const Info & info-회원 info
 // Revisions:
 //		1. When & Who: 2019/06/01 by 김소연
 std::ostream & operator<<(std::ostream & os, const Info & info)
