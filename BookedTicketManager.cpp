@@ -7,20 +7,36 @@
 // Revisions:
 // 		1.	When & Who: 2019/06/01 by 김소연
 // 				What: create file
-//
-// 		2.	When & Who: 2019/06/04 by 김소연
-// 				What: modify some errors
+
 
 #include "BookedTicketManager.h"
 #include "UserCollection.h"
 
-
+// Function: BookedTicketManager()
+// Description: private 생성자(singleton)
+// Author: 김소연
+// Revisions:
+//		1. When & Who: 2019/06/01 by 김소연
+//				What: Singletone 패턴을 적용한 private 생성자
 BookedTicketManager::BookedTicketManager()
 {
 }
 
 
+// Function: static BookedTicketManager* var;
+// Description: private instance 변수 (singleton)
+// Author: 김소연
+// Revisions:
+//		1. When & Who: 2019/06/01 by 김소연
+//				What: Singleton 패턴을 적용한 private instance 변수
 BookedTicketManager* BookedTicketManager::var = nullptr;
+
+// Function: static BookedTicketManager& get();
+// Description: instance caller
+// Author: 김소연
+// Revisions:
+//		1. When & Who: 2019/06/01 by 김소연
+//				What: Singleton 패턴을 적용한 instance caller
 BookedTicketManager & BookedTicketManager::get()
 {
 	if (!var)
@@ -28,6 +44,13 @@ BookedTicketManager & BookedTicketManager::get()
 	return *var;
 }
 
+
+// Function: void print(const Info& buyerInfo)
+// Description: 예약된 티켓 출력담당
+// Author: 김소연
+// Revisions:
+//		1. When & Who: 2019/06/01 by 김소연
+//				What: 예약된 티켓의 출력을 담당
 void BookedTicketManager::print(const Info & buyerInfo)
 {
 	std::cout << "4.5. 예약 정보 조회" << std::endl;
@@ -49,6 +72,13 @@ void BookedTicketManager::print(const Info & buyerInfo)
 	}
 }
 
+
+// Function: ~BookedTicketManager();
+// Description: 소멸자
+// Author: 김소연
+// Revisions:
+//		1. When & Who: 2019/06/01 by 김소연
+//				What: 소멸자이다
 BookedTicketManager::~BookedTicketManager()
 {
 }
